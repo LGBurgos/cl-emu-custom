@@ -1,0 +1,9 @@
+<odoo>
+    <record id="seq_crm_lead_cotizacion" model="ir.sequence">
+        <field name="name">Secuencia Cotización CRM</field>
+        <field name="code">crm.lead.cotizacion</field>
+        <field name="prefix"></field>
+        <field name="padding">1</field>
+        <field name="company_id" eval="False"/>
+    </record>
+</odoo>
