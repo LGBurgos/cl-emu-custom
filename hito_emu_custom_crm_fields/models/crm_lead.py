@@ -7,8 +7,8 @@ class CrmLead(models.Model):
     envio_rfq = fields.Datetime(string='Envío RFQ')
     lead_time = fields.Integer(string='Lead Time', compute='compute_lead_time')
     cotizacion = fields.Integer(string='Cotización', readonly=True, copy=False)
-    # rubro = fields.Many2one('x_rubro', string='Rubro')
-    # tipo_de_pieza = fields.Many2one('x_tipo_de_pieza', string='Tipo de pieza')
+    rubro = fields.Many2one('x_rubro', string='Rubro')
+    tipo_de_pieza = fields.Many2one('x_tipo_de_pieza', string='Tipo de pieza')
 
     @api.model
     def create(self, vals):

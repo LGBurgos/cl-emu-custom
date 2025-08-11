@@ -13,8 +13,8 @@
 
             <xpath expr="//form[1]/sheet[1]/group[1]/group[not(@name)][1]/field[@name='tag_ids']" position="after">
                 <field name="cotizacion" options="{'step':1}"/>
-<!--                <field name="rubro" options="{'create_name_field': 'x_name'}"/>-->
-<!--                <field name="tipo_de_pieza" options="{'create_name_field': 'x_name'}"/>-->
+                <field name="rubro" options="{'create_name_field': 'x_name'}"/>
+                <field name="tipo_de_pieza" options="{'create_name_field': 'x_name'}"/>
             </xpath>
 
         </field>
