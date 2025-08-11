@@ -24,3 +24,20 @@ class CrmLead(models.Model):
                 rec.lead_time = delta.days
             else:
                 rec.lead_time = 0
+
+    @api.model
+    def copy_data(self):
+        leads = self.env['crm.lead'].sudo().search([])
+        for rec in leads:
+            if rec.x_studio_recepcin_rfq:
+                rec.recepcion_rfq = rec.x_studio_recepcin_rfq
+            if rec.x_studio_envo_rfq:
+                rec.envio_rfq = rec.x_studio_envo_rfq
+            if rec.x_studio_lead_time:
+                rec.lead_time = rec.x_studio_lead_time
+            if rec.x_studio_cotizacin:
+                rec.cotizacion = rec.x_studio_cotizacin
+            if rec.x_studio_rubro_1:
+                rec.rubro = rec.x_studio_rubro_1.id
+            if rec.x_studio_tipo_de_pieza:
+                rec.tipo_de_pieza = rec.x_studio_tipo_de_pieza.id

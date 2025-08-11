@@ -6,6 +6,7 @@
     "summary": "Add custom fields to CRM",
     "data": [
         'data/sequence.xml',
+        'data/copiar_datos.xml',
         'views/crm_lead.xml',
     ],
     "installable": True,
