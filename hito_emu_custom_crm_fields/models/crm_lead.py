@@ -1,5 +1,9 @@
 from odoo import models, fields, api
 
+import logging
+
+_logger = logging.getLogger(__name__)
+
 class CrmLead(models.Model):
     _inherit = "crm.lead"
 
@@ -41,3 +45,20 @@ class CrmLead(models.Model):
                 rec.rubro = rec.x_studio_rubro_1.id
             if rec.x_studio_tipo_de_pieza:
                 rec.tipo_de_pieza = rec.x_studio_tipo_de_pieza.id
+
+
+def patch_action_sale_quotations_new():
+    from odoo.addons.sale_crm.models.crm_lead import CrmLead
+
+    original_method = CrmLead.action_sale_quotations_new
+
+    def patched_action_sale_quotations_new(self):
+        result = original_method(self)
+        if isinstance(result, dict):
+            ctx = dict(result.get('context', {}) or {})
+            ctx['default_rubro'] = self.rubro.id if self.rubro else False
+            result['context'] = ctx
+        return result
+    CrmLead.action_sale_quotations_new = patched_action_sale_quotations_new
+
+patch_action_sale_quotations_new()

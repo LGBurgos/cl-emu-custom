@@ -1,0 +1,5 @@
+<odoo>
+    <template id="hito_report_delivery_document_inherit" inherit_id="l10n_ar_stock.report_delivery_document">
+
+    </template>
+</odoo>
