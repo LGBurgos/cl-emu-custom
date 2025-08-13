@@ -1,5 +1,39 @@
 <odoo>
     <template id="hito_report_delivery_document_inherit" inherit_id="l10n_ar_stock.report_delivery_document">
-
+         <xpath expr="//div[@id='informations']/div[2]" position="replace">
+             <div class="col-6">
+                <t>
+                    <strong>Nº pedido:</strong>
+                    <span t-field="o.origin"/>
+                </t>
+                <t position="after">
+                    <t t-if="o.cot">
+                        <br/>
+                        <strong>COT:</strong>
+                        <span t-field="o.cot"/>
+                    </t>
+                </t>
+                <t t-if="o._fields.get('purchase_order_number') and o.sudo().purchase_order_number">
+                    <br/>
+                    <strong>Número OC:</strong>
+                    <span t-field="o.sudo().purchase_order_number"/>
+                </t>
+                <t t-if="o._fields.get('sale_id') and o.sudo().sale_id.client_order_ref">
+                    <br/>
+                    <strong>Orden de compra:</strong>
+                    <span t-field="o.sudo().sale_id.client_order_ref"/>
+                </t>
+                <t t-if="o.declared_value">
+                    <br/>
+                    <strong>Valor declarado:</strong>
+                    <span t-field="o.declared_value"/>
+                </t>
+                <t t-if="o.number_of_packages">
+                    <br/>
+                    <strong>Cant. de paquetes:</strong>
+                    <span t-field="o.number_of_packages"/>
+                </t>
+            </div>
+         </xpath>
     </template>
 </odoo>

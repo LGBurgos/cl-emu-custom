@@ -6,6 +6,7 @@
     "summary": "Custom reports",
     "data": [
         'report/report_invoice_document.xml',
+        'report/report_delivery_document.xml',
     ],
     "installable": True,
     "application": False,
