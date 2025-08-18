@@ -5,6 +5,8 @@
     "category": "",
     "summary": "Custom reports",
     "data": [
+        'views/account_move.xml',
+        # 'views/sale_order_view.xml',
         'report/report_invoice_document.xml',
         'report/report_delivery_document.xml',
     ],
