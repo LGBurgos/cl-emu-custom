@@ -35,6 +35,12 @@
                         <p t-else="" t-field="o.invoice_incoterm_id.name" class="m-0"/>
                     </t>
 
+                    <t t-if="o.picking_ids">
+                        <br/>
+                        <strong>Remitos:</strong>
+                        <span t-out="', '.join(o.picking_ids.mapped('voucher_ids.display_name')) or ''"/>
+                    </t>
+
                 </div>
         </xpath>
     </template>
