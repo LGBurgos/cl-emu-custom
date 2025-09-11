@@ -1,0 +1,16 @@
+<odoo>
+    <record id="view_sale_advance_payment_inv_inherit" model="ir.ui.view">
+        <field name="name">view.sale.advance.payment.inv.inherit</field>
+        <field name="model">sale.advance.payment.inv</field>
+        <field name="inherit_id" ref="sale.view_sale_advance_payment_inv"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='advance_payment_method']" position="after">
+                    <field name="sale_order_id" force_save="1" invisible="1"/>
+                    <field name="select_pickings" nolabel="1" invisible="advance_payment_method != 'facturar_pickings_seleccionados'" domain="[('sale_id', '=', sale_order_id), ('state','=', 'done'), ('facturado','!=', 'facturado')]" options="{'no_create': True, 'no_create_edit': True}"/>
+            </xpath>
+
+        </field>
+
+    </record>
+</odoo>
