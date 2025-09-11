@@ -1,0 +1,35 @@
+<odoo>
+    <record id="view_picking_form_inherit_facturado" model="ir.ui.view">
+        <field name="name">stock.picking.form.facturado.ribbon</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//div[@name='button_box']" position="after">
+
+                 <widget name="web_ribbon" title="Facturado" bg_color="bg-success" invisible="facturado != 'facturado'"/>
+
+                <field name="facturado" invisible="1"/>
+
+            </xpath>
+
+        </field>
+    </record>
+
+
+    <record id="view_picking_tree_inherit_facturado" model="ir.ui.view">
+        <field name="name">stock.picking.tree.facturado</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.vpicktree"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='state']" position="after">
+
+                <field name="facturado" string="Facturación" widget="badge" decoration-danger="facturado == 'no_facturado'" decoration-success="facturado == 'facturado'"/>
+
+            </xpath>
+
+        </field>
+</record>
+
+</odoo>
