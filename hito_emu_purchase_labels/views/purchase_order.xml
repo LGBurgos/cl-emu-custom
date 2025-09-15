@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_purchase_order_form_inherit_custom" model="ir.ui.view">
+        <field name="name">purchase.order.form.inherit.custom</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='project_id']" position="after">
+                <field name="purchase_label_id"/>
+            </xpath>
+
+            <xpath expr="//div[@name='date_planned_div']" position="after">
+                <field name="fecha_inicial_prometida"/>
+            </xpath>
+
+        </field>
+    </record>
+
+    <record id="view_purchase_order_tree_inherit_custom" model="ir.ui.view">
+        <field name="name">purchase.order.tree.inherit.custom</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_kpis_tree"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='origin']" position="after">
+                <field name="purchase_label_id" widget="badge"/>
+            </xpath>
+
+        </field>
+    </record>
+
+
+    <record id="view_purchase_order_search_inherit_custom" model="ir.ui.view">
+        <field name="name">purchase.order.search.inherit.custom</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.view_purchase_order_filter"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//filter[@name='draft']" position="before">
+                <filter string="Etiqueta" name="filter_purchase_label" domain="[('purchase_label_id','!=',False)]"/>
+            </xpath>
+
+            <xpath expr="//group[@expand='0']" position="inside">
+                <filter string="Etiqueta" name="group_purchase_label" context="{'group_by':'purchase_label_id'}"/>
+            </xpath>
+
+        </field>
+    </record>
+
+
+
+</odoo>
