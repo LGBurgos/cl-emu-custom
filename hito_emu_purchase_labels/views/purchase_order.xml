@@ -26,6 +26,10 @@
             <xpath expr="//field[@name='origin']" position="after">
                 <field name="purchase_label_id" widget="badge"/>
             </xpath>
+            <xpath expr="//field[@name='date_order']" position="after">
+                <field name="fecha_inicial_prometida" optional="show"/>
+                <field name="date_planned" optional="show"/>
+            </xpath>
 
         </field>
     </record>

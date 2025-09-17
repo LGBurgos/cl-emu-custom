@@ -1,0 +1,49 @@
+<odoo>
+    <record id="purchase_request_view_form_inherit_custom" model="ir.ui.view">
+        <field name="name">purchase.request.view.form.inherit.custom</field>
+        <field name="model">purchase.request</field>
+        <field name="inherit_id" ref="purchase_request.view_purchase_request_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='group_id']" position="after">
+                <field name="requisition_purchase_label_id"/>
+            </xpath>
+
+        </field>
+    </record>
+
+    <record id="purchase_request_view_tree_inherit_custom" model="ir.ui.view">
+        <field name="name">purchase.request.view.tree.inherit.custom</field>
+        <field name="model">purchase.request</field>
+        <field name="inherit_id" ref="purchase_request.view_purchase_request_tree"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='activity_ids']" position="after">
+                <field name="requisition_purchase_label_id" widget="badge"/>
+            </xpath>
+
+        </field>
+    </record>
+
+    <record id="purchase_request_view_search_inherit_custom" model="ir.ui.view">
+        <field name="name">purchase.request.view.search.inherit.custom</field>
+        <field name="model">purchase.request</field>
+        <field name="inherit_id" ref="purchase_request.view_purchase_request_search"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//filter[@name='start_date']" position="after">
+                <filter string="Etiqueta de Requisición"
+                        name="group_requisition_purchase_label"
+                        context="{'group_by':'requisition_purchase_label_id'}"/>
+            </xpath>
+
+            <xpath expr="//filter[@name='state_done']" position="after">
+                <filter string="Etiqueta de Requisición"
+                            name="filter_requisition_purchase_label"
+                            domain="[('requisition_purchase_label_id','!=',False)]"/>
+            </xpath>
+
+        </field>
+    </record>
+
+</odoo>
