@@ -5,5 +5,5 @@ class PurchaseOrder(models.Model):
 
     purchase_label_id = fields.Many2one('purchase.label', string='Etiqueta de Compras')
 
-    fecha_inicial_prometida = fields.Date('Fecha incial prometida')
+    fecha_inicial_prometida = fields.Date('Fecha inicial prometida')
 
