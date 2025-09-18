@@ -78,6 +78,7 @@ class SaleAdvancePaymentInv(models.TransientModel):
                         "name": sale_line.name if sale_line else move.product_id.display_name,
                         "tax_ids": [(6, 0, sale_line.tax_id.ids)] if sale_line else False,
                         "sale_line_ids": [(6, 0, [sale_line.id])] if sale_line else False,
+                        "remito": move.picking_id.vouchers if move.picking_id.vouchers else False,
                     }
                     invoice_lines.append((0, 0, vals))
 
