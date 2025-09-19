@@ -1,0 +1,23 @@
+<odoo>
+    <template id="l10n_latam_invoice_document.external_layout_standard" inherit_id="web.external_layout_standard">
+        <xpath expr="//img/../.." position="attributes">
+            <attribute name="t-if">not custom_header</attribute>
+        </xpath>
+        <xpath expr="//img/../.." position="after">
+            <div t-attf-class="header o_company_#{company.id}_layout" t-if="custom_header and company._localization_use_documents()">
+                <t t-call="#{custom_header}"/>
+            </div>
+        </xpath>
+
+        <!-- support for custom footer -->
+        <div class="o_footer_content d-flex border-top pt-2" position="attributes">
+            <attribute name="t-if">not custom_footer</attribute>
+        </div>
+
+        <div class="o_footer_content d-flex border-top pt-2" position="after">
+            <div class="o_footer_content border-top pt-2" t-if="custom_footer and company._localization_use_documents()">
+                <t t-call="#{custom_footer}"/>
+            </div>
+        </div>
+    </template>
+</odoo>

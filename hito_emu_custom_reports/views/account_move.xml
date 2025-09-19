@@ -10,6 +10,10 @@
                 <attribute name="string">O. Compra</attribute>
             </xpath>
 
+            <xpath expr="//group[@name='sale_info_group']/field[@name='ref']" position="after">
+                <field name="invoice_code"/>
+            </xpath>
+
         </field>
     </record>
 </odoo>

@@ -1,0 +1,185 @@
+<odoo>
+    <!-- HEADER -->
+    <template id="purchase_custom_header">
+        <div class="row" style="border-color: black !important; border: 2px solid black;">
+            <div class="col-7 only-right">
+                <div class="row border-top-0" style="font-family:sans-serif">
+                    <div class="col-3">
+                        <img t-if="company.logo" t-att-src="image_data_uri(company.logo)" class="m-2 p-2" alt="Logo" style="width:100px;"/>
+                    </div>
+                    <div class="col-8 text-start" style="color: black !important;">
+                        <strong><div t-field="o.company_id.company_details"/></strong>
+                    </div>
+                </div>
+            </div>
+            <div class="col-5" style="text-align: start; font-family:sans-serif;">
+                <span style="margin-left:100px; font-weight:bold; font-size: 22px;">Orden de compra</span>
+                <br/>
+                <span style="font-weight:bold; font-size: 18px;">Num. de Doc.: </span> <span t-field="o.name"/>
+                <br/>
+                <span style="font-weight:bold; font-size: 18px;">Fecha: </span><span t-field="o.date_approve"/>
+                <br/>
+                <span style="font-weight:bold; font-size: 18px;">CUIT: </span><span t-field="o.company_id.vat"/>
+                <br/>
+                <span style="font-weight:bold; font-size: 18px;">Ingresos Brutos: </span><span t-out="o.company_id.l10n_ar_gross_income_type == 'exempt' and 'Exento' or o.company_id.l10n_ar_gross_income_number"/>
+                <br/>
+                <span style="font-weight:bold; font-size: 18px;">Inicio de Actividades: </span><span t-field="o.company_id.l10n_ar_afip_start_date"/>
+            </div>
+        </div>
+    </template>
+
+    <!-- FOOTER -->
+    <template id="purchase_custom_footer">
+        <div class="row p-2" style="border: 2px solid black; font-family:sans-serif;">
+            <div class="col-4 text-start">
+                <strong><span>Subtotal Neto: </span></strong><span t-field="o.amount_untaxed"/>
+            </div>
+            <div class="col-4 text-center">
+                <t t-set="impuestos" t-value="o.amount_total - o.amount_untaxed"/>
+                <strong><span>Impuestos: </span></strong> <span t-field="o.currency_id.symbol"/> <span t-esc="'{:,.2f}'.format(impuestos)"/>
+            </div>
+            <div class="col-4 text-end">
+                <strong><span>Total: </span></strong> <span t-field="o.amount_total"/>
+            </div>
+        </div>
+        <div class="row">
+            <div name="footer_left_column" class="col-8 text-start" style="font-family:sans-serif;">
+                <strong><span>Observaciones:</span></strong> <span t-field="o.notes"/>
+            </div>
+            <div name="footer_right_column" class="col-4 text-end">
+                <div name="pager" t-if="report_type == 'pdf'">
+                    <span class="page"/> / <span class="topage"/>
+                </div>
+            </div>
+        </div>
+    </template>
+
+
+    <template id="hito_inherit_report_purchaseorder_document" inherit_id="purchase.report_purchaseorder_document">
+        <xpath expr="//div[hasclass('page')]" position="before">
+            <t t-set="custom_header" t-value="'hito_emu_custom_reports.purchase_custom_header'"/>
+            <t t-set="custom_footer" t-value="'hito_emu_custom_reports.purchase_custom_footer'"/>
+        </xpath>
+
+        <xpath expr="//div[@id='informations']" position="replace">
+            <div id="informations" class="row mb-1" style="margin-top:-10px;border: 2px solid black;">
+                <div class="row p-2" style="font-family:sans-serif;">
+                    <div class="col-8">
+                        <strong>Sr.(es):</strong> <span t-field="o.partner_id.name"/>
+                        <br/>
+
+                        <strong>Domicilio:  </strong> <span t-field="o.partner_id" t-options="{'widget': 'contact', 'fields': ['address'], 'no_marker': true, 'no_tag_br': True}"/>
+
+                        <br/>
+
+                        <strong>Cond. IVA: </strong> <span t-field="o.partner_id.l10n_ar_afip_responsibility_type_id"/>
+                    </div>
+                    <div class="col-4">
+                        <strong>C.U.I.T: </strong> <span t-field="o.partner_id.vat"/>
+                    </div>
+                </div>
+            </div>
+            <div class="p-2" style="border: 2px solid black;">
+                <strong>Cond. de pago: </strong><span t-field="o.payment_term_id.name"/>
+                <br/>
+                <strong>Moneda: </strong> <span t-field="o.currency_id.currency_unit_label"/>
+            </div>
+        </xpath>
+
+        <xpath expr="//t[@t-set='information_block']" position="replace"/>
+        <xpath expr="//t[@t-set='address']" position="replace"/>
+        <xpath expr="//t[@t-set='layout_document_title']" position="replace"/>
+
+        <xpath expr="//table[1]" position="replace">
+            <table class="table o_main_table table-borderless mt-1">
+                <thead style="border: 2px solid black;">
+                    <tr>
+                        <th name="th_code" class="p-2 text-start"><strong>Código</strong></th>
+                        <th name="th_description" class="p-2 text-start"><strong>Descripción</strong></th>
+                        <th name="th_date" class="p-2 text-start"><strong>Fecha</strong></th>
+                        <th name="th_quantity" class="p-2 text-end"><strong>Cant.</strong></th>
+                        <th name="th_description" class="p-2 text-start"><strong>Unidad</strong></th>
+                        <th name="th_price_unit" class="p-2 text-end"><strong>Prec. Unit</strong></th>
+<!--                        <th name="th_discount" class="text-end"><strong>Disc.</strong></th>-->
+<!--                        <th name="th_taxes" class="text-end"><strong>Taxes</strong></th>-->
+                        <th name="th_subtotal" class="p-2 text-end">
+                            <strong>Total Neto</strong>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <t t-set="current_subtotal" t-value="0"/>
+                    <t t-foreach="o.order_line" t-as="line">
+                        <t t-set="current_subtotal" t-value="current_subtotal + line.price_subtotal"/>
+
+                        <tr t-att-class="'fw-bold o_line_section' if line.display_type == 'line_section' else 'fst-italic o_line_note' if line.display_type == 'line_note' else ''">
+                            <t t-if="not line.display_type">
+                                <td id="product_code" class="text-start">
+                                    <span t-field="line.product_id.default_code"/>
+                                </td>
+                                <td id="product" class="text-start">
+                                    <span t-field="line.product_id.name"/>
+                                </td>
+                                <td class="text-start">
+                                    <span t-field="line.date_planned" t-options="{'date_only': True}"/>
+                                </td>
+                                <td class="text-end">
+                                    <span t-field="line.product_qty"/>
+<!--                                    <span t-if="line.product_packaging_id">-->
+<!--                                        (<span t-field="line.product_packaging_qty" t-options="{&quot;widget&quot;: &quot;integer&quot;}"/> <span t-field="line.product_packaging_id"/>)-->
+<!--                                    </span>-->
+                                </td>
+                                <td class="text-start">
+                                    <span t-field="line.product_uom.name" groups="uom.group_uom"/>
+                                </td>
+                                <td class="text-end">
+                                    <span t-field="line.price_unit"/>
+                                </td>
+<!--                                <td class="text-end">-->
+<!--                                    <span class="text-align-bottom"><span t-field="line.discount"/>%</span>-->
+<!--                                </td>-->
+<!--                                <td class="text-end">-->
+<!--                                    <span t-out="', '.join([(tax.invoice_label or tax.name) for tax in line.taxes_id])"/>-->
+<!--                                </td>-->
+                                <td class="text-end">
+                                    <span t-field="line.price_subtotal" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: o.currency_id}"/>
+                                </td>
+                            </t>
+                            <t t-if="line.display_type == 'line_section'">
+                                <td colspan="99" id="section">
+                                    <span t-field="line.name"/>
+                                </td>
+                                <t t-set="current_section" t-value="line"/>
+                                <t t-set="current_subtotal" t-value="0"/>
+                            </t>
+                            <t t-if="line.display_type == 'line_note'">
+                                <td colspan="99" id="note">
+                                    <span t-field="line.name"/>
+                                </td>
+                            </t>
+                        </tr>
+                        <t t-if="current_section and (line_last or o.order_line[line_index+1].display_type == 'line_section')">
+                            <tr class="is-subtotal text-end">
+                                <td colspan="99" id="subtotal">
+                                    <strong class="mr16">Subtotal</strong>
+                                    <span t-out="current_subtotal" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: o.currency_id}"/>
+                                </td>
+                            </tr>
+                        </t>
+                    </t>
+                </tbody>
+            </table>
+        </xpath>
+
+        <!-- ELIMINO EL TOTAL DE ABAJO DE LA TABLA-->
+        <xpath expr="//div[@id='total']/div" position="replace"/>
+
+        <xpath expr="//span[@t-field='o.payment_term_id']/preceding-sibling::strong[1]" position="replace"/>
+        <xpath expr="//span[@t-field='o.payment_term_id']" position="replace"/>
+        <xpath expr="//p[@t-field='o.notes']" position="replace"/>
+
+
+    </template>
+
+</odoo>
+

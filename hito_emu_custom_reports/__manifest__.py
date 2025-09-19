@@ -6,9 +6,11 @@
     "summary": "Custom reports",
     "data": [
         'views/account_move.xml',
-        # 'views/sale_order_view.xml',
+        'report/report.xml',
+        'report/l10n_latam_invoice_document_external_layout_standard.xml',
         'report/report_invoice_document.xml',
         'report/report_delivery_document.xml',
+        'report/report_purchaseorder_document.xml',
     ],
     "installable": True,
     "application": False,
