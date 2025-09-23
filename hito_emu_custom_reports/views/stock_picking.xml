@@ -1,0 +1,22 @@
+<odoo>
+    <record id="view_stock_picking_form_inherit_custom" model="ir.ui.view">
+        <field name="name">stock.picking.form.inherit.custom</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='move_type']" position="after">
+                <field name="payment_terms" string="Forma de pago"/>
+                <field name="orden_compra" string="O.Compra"/>
+                <field name="transporte"/>
+                <field name="despachado_por"/>
+                <field name="control"/>
+            </xpath>
+
+            <xpath expr="//field[@name='declared_value']" position="before">
+                <field name="kg" string="Kg"/>
+            </xpath>
+
+        </field>
+    </record>
+</odoo>

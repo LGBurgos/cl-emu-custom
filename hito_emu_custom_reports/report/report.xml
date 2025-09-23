@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+        <!-- FACTURAS -->
+        <record id="paperformat_invoice_custom" model="report.paperformat">
+            <field name="name">Invoice Custom Format</field>
+            <field name="default" eval="False"/>
+            <field name="format">A4</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">52</field>
+            <field name="margin_bottom">150</field>
+            <field name="margin_left">2</field>
+            <field name="margin_right">2</field>
+            <field name="header_spacing">50</field>
+            <field name="header_line" eval="False"/>
+            <field name="dpi">90</field>
+        </record>
+
+        <record id="account.account_invoices_without_payment" model="ir.actions.report">
+            <field name="paperformat_id" ref="paperformat_invoice_custom"/>
+        </record>
+
+        <record id="account.account_invoices" model="ir.actions.report">
+            <field name="paperformat_id" ref="paperformat_invoice_custom"/>
+        </record>
+
+
+        <!-- REMITOS -->
+        <record id="paperformat_stock_picking_custom" model="report.paperformat">
+            <field name="name">Stock Picking Custom Format</field>
+            <field name="default" eval="False"/>
+            <field name="format">A4</field>
+            <field name="orientation">Portrait</field>
+            <field name="header_spacing">42</field>
+            <field name="margin_top">48</field>
+            <field name="margin_bottom">60</field>
+            <field name="margin_left">3</field>
+            <field name="margin_right">3</field>
+            <field name="header_line" eval="False"/>
+            <field name="dpi">90</field>
+        </record>
+
+        <record id="stock.action_report_delivery" model="ir.actions.report">
+            <field name="paperformat_id" ref="paperformat_stock_picking_custom"/>
+        </record>
+
+</odoo>
