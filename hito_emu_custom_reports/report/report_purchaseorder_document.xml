@@ -58,7 +58,12 @@
     <template id="hito_inherit_report_purchaseorder_document" inherit_id="purchase.report_purchaseorder_document">
         <xpath expr="//div[hasclass('page')]" position="before">
             <t t-set="custom_header" t-value="'hito_emu_custom_reports.purchase_custom_header'"/>
-            <t t-set="custom_footer" t-value="'hito_emu_custom_reports.purchase_custom_footer'"/>
+
+        </xpath>
+        <xpath expr="//div[hasclass('page')]" position="before">
+            <t t-set="custom_footer">
+                <t t-call="hito_emu_custom_reports.purchase_custom_footer"/>
+            </t>
         </xpath>
 
         <xpath expr="//div[@id='informations']" position="replace">
