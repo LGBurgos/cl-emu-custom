@@ -435,7 +435,7 @@
                             <t t-if="line.display_type == 'product'" name="account_invoice_line_accountable">
                                 <td name="td_remito" class="px-3 py-1">
     <!--                                <span t-if="line.product_id" t-field="line.product_id.default_code"/>-->
-                                    <span style="font-size:14px;">123.456</span>
+                                    <span t-field="line.remito" style="font-size:14px;"/>
                                 </td>
                                 <td name="td_code" class="px-3 py-1">
                                     <span t-if="line.product_id" t-field="line.product_id.default_code" style="font-size:14px;"/>
