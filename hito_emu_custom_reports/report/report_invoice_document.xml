@@ -48,7 +48,7 @@
                     <br/>
                     <span style="font-weight:bold; font-size: 18px;">Pago en C.B.U informada.</span>
                     <br/>
-                    <t t-if="o.state == posted">
+                    <t t-if="o.state == 'posted'">
                         <span style="font-weight:bold; font-size: 18px;">Punto de venta: </span><span t-esc="o.sequence_prefix[4:10]"/>   <span style="font-weight:bold; font-size: 18px;">Comp. N°: </span><span style="font-size: 18px;" t-esc="o.l10n_latam_document_number.split('-')[1]"/>
                         <br/>
                     </t>
@@ -320,13 +320,13 @@
                     </div>
 
                     <div class="row" style="margin-top:30px;">
-                        <div class="col-8 text-start">
+                        <div class="col-6 text-start">
                             <!-- (17) CUIT -->
                             <t t-if="o.partner_id.vat and o.partner_id.l10n_latam_identification_type_id">
                                 <strong><t t-out="o.partner_id.l10n_latam_identification_type_id.name or o.company_id.account_fiscal_country_id.vat_label" id="inv_tax_id_label"/>:</strong> <span t-out="o.partner_id.l10n_ar_formatted_vat if o.partner_id.l10n_ar_vat else o.partner_id.vat"/>
                             </t>
                         </div>
-                        <div class="col-4 text-start">
+                        <div class="col-6 text-start">
                             <span t-field="o.partner_id.l10n_ar_afip_responsibility_type_id"/>
                         </div>
                     </div>
