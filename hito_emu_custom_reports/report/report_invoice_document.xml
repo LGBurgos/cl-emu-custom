@@ -48,13 +48,21 @@
                     <br/>
                     <span style="font-weight:bold; font-size: 18px;">Pago en C.B.U informada.</span>
                     <br/>
-                    <span style="font-weight:bold; font-size: 18px;">Punto de venta: </span><span t-field="o.journal_id.code"/>   <span style="font-weight:bold; font-size: 18px;">Comp. N°: </span><span style="font-size: 18px;" t-esc="o.l10n_latam_document_number.split('-')[1]"/>
-                    <br/>
+                    <t t-if="o.state == posted">
+                        <span style="font-weight:bold; font-size: 18px;">Punto de venta: </span><span t-esc="o.sequence_prefix[4:10]"/>   <span style="font-weight:bold; font-size: 18px;">Comp. N°: </span><span style="font-size: 18px;" t-esc="o.l10n_latam_document_number.split('-')[1]"/>
+                        <br/>
+                    </t>
+                    <t t-else="">
+                        <span><span style="font-weight:bold; font-size: 18px;">Punto de venta:      </span>   <strong>Comp. N°:</strong></span>
+                        <br/>
+                    </t>
                     <span style="font-weight:bold; font-size: 18px;">Fecha de Emisión: </span><span t-field="o.invoice_date"/>
                     <br/>
-                    <span style="font-weight:bold; font-size: 18px;">Fecha de Inicio de Actividades: </span><span t-field="o.company_id.l10n_ar_afip_start_date"/>
+                    <span style="font-weight:bold; font-size: 18px;">CUIT: </span><span t-field="o.company_id.vat"/>
                     <br/>
                     <span style="font-weight:bold; font-size: 18px;">Ingresos Brutos: </span><span t-out="o.company_id.l10n_ar_gross_income_type == 'exempt' and 'Exento' or o.company_id.l10n_ar_gross_income_number"/>
+                    <br/>
+                    <span style="font-weight:bold; font-size: 18px;">Fecha de Inicio de Actividades: </span><span t-field="o.company_id.l10n_ar_afip_start_date"/>
                 </div>
             </div>
         </div>
@@ -193,8 +201,12 @@
                         <br/>
                         <t t-if="not copy_type">
                             <span>ORIGINAL</span>
+                            <br/>
                         </t>
-                        <t t-out="copy_type"/>
+                        <t t-if="copy_type">
+                            <t t-out="copy_type"/>
+                            <br/>
+                        </t>
                     </div>
                     <div name="footer_right_column" class="col-4 text-end">
                         <div name="pager" t-if="report_type == 'pdf'">
@@ -299,35 +311,29 @@
                 </div>
                 <div class="col-6 p-3">
                     <div class="row">
-                        <div class="col text-center" style="margin-left:-15px;">
+                        <div class="col text-start">
                             <span t-field="o.partner_id.internal_code"/>
                         </div>
-                        <div class="col text-end">
-                            <span>N° Identif.: </span> <span t-field="o.partner_id.internal_code"/>
+                        <div class="col text-start">
+                            <strong><span>N° Identif.:  </span></strong> <span t-field="o.partner_id.num_identificacion"/>
                         </div>
                     </div>
 
                     <div class="row" style="margin-top:30px;">
-                        <div class="col text-start">
+                        <div class="col-8 text-start">
                             <!-- (17) CUIT -->
                             <t t-if="o.partner_id.vat and o.partner_id.l10n_latam_identification_type_id">
                                 <strong><t t-out="o.partner_id.l10n_latam_identification_type_id.name or o.company_id.account_fiscal_country_id.vat_label" id="inv_tax_id_label"/>:</strong> <span t-out="o.partner_id.l10n_ar_formatted_vat if o.partner_id.l10n_ar_vat else o.partner_id.vat"/>
                             </t>
                         </div>
-                        <div class="col text-start">
+                        <div class="col-4 text-start">
                             <span t-field="o.partner_id.l10n_ar_afip_responsibility_type_id"/>
                         </div>
                     </div>
 
                     <t t-if="o.ref">
-                        <br/><strong>Orden de compra:</strong>
+                        <br/><strong>O.Compra:</strong>
                         <span t-field="o.ref"/>
-                    </t>
-
-                    <t t-if="o.picking_ids">
-                        <br/>
-                        <strong>Remitos:</strong>
-                        <span t-out="', '.join(o.picking_ids.mapped('voucher_ids.display_name')) or ''"/>
                     </t>
 
                 </div>
@@ -342,22 +348,6 @@
             </div>
         </div>
 
-<!--        <xpath expr="//div[@id='payment_term']" position="before">-->
-<!--            <div class="mb-4">-->
-<!--                <t t-if="o.l10n_ar_afip_concept in ['2', '3', '4'] and o.l10n_ar_afip_service_start and o.l10n_ar_afip_service_end">-->
-<!--                    <strong>Invoiced period: </strong><span t-field="o.l10n_ar_afip_service_start"/> to <span t-field="o.l10n_ar_afip_service_end"/>-->
-<!--                </t>-->
-<!--                <t t-if="o.currency_id != o.company_id.currency_id">-->
-<!--                    <br/><strong>Currency: </strong><span t-out="'%s - %s' % (o.currency_id.name, o.currency_id.currency_unit_label)"/>-->
-<!--                    <br/><span>1 <t t-out="o.currency_id.name"/> = <t t-out="1 / o.invoice_currency_rate" t-options="{&quot;widget&quot;: &quot;float&quot;, &quot;precision&quot;: 2}"/> <t t-out="o.company_currency_id.name"/></span>-->
-<!--                </t>-->
-<!--                &lt;!&ndash; Show CBU for FACTURA DE CREDITO ELECTRONICA MiPyMEs and NOTA DE DEBITO ELECTRONICA MiPyMEs &ndash;&gt;-->
-<!--                <t t-if="o.l10n_latam_document_type_id.code in ['201', '206', '211', '202', '207', '212'] and o.partner_bank_id">-->
-<!--                    <br/><strong>CBU for payment: </strong><span t-out="o.partner_bank_id.acc_number or '' if o.partner_bank_id.acc_type == 'cbu' else ''"/>-->
-<!--                </t>-->
-
-<!--            </div>-->
-<!--        </xpath>-->
 
         <!-- Show total amount in letters for MiPyMEs document types according to the law
          http://biblioteca.afip.gob.ar/dcp/LEY_C_027440_2018_05_09 article 5.f -->
@@ -495,54 +485,6 @@
 
         <xpath expr="//span[@id='payment_terms_note_id']" position="replace"/>
 
-    </template>
-
-
-
-    <template id="custom_partenr_information_invisible" inherit_id="l10n_ar.report_invoice_document">
-        <xpath expr="//div[@id='informations']/div[2]" position="replace">
-            <div class="col-6">
-
-                    <t t-if="o.invoice_date_due">
-                        <strong>Fecha de vencimiento: </strong>
-                        <span t-field="o.invoice_date_due"/>
-                    </t>
-
-                    <t t-if="o.invoice_payment_term_id" name="payment_term">
-                        <br/><strong>Condiciones de pago: </strong><span t-field="o.invoice_payment_term_id.name"/>
-                    </t>
-
-                    <t t-if="o.invoice_origin">
-                        <br/><strong>Fuente:</strong>
-                        <span t-field="o.invoice_origin"/>
-                    </t>
-
-                    <t t-if="o.ref">
-                        <br/><strong>Orden de compra:</strong>
-                        <span t-field="o.ref"/>
-                    </t>
-
-                    <!-- (18) REMITOS -->
-                    <!-- We do not have remitos implement yet. print here the remito number when we have it -->
-
-                    <t t-if="o.invoice_incoterm_id">
-                        <br/>
-                        <strong>Incoterm:</strong>
-                        <p t-if="o.incoterm_location">
-                            <span t-field="o.invoice_incoterm_id.code"/> <br/>
-                            <span t-field="o.incoterm_location"/>
-                        </p>
-                        <p t-else="" t-field="o.invoice_incoterm_id.name" class="m-0"/>
-                    </t>
-
-                    <t t-if="o.picking_ids">
-                        <br/>
-                        <strong>Remitos:</strong>
-                        <span t-out="', '.join(o.picking_ids.mapped('voucher_ids.display_name')) or ''"/>
-                    </t>
-
-                </div>
-        </xpath>
     </template>
 
 </odoo>

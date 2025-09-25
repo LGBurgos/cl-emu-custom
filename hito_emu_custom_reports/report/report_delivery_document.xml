@@ -56,9 +56,9 @@
                     <br/>
                     <span style="font-weight:bold; font-size: 18px;">CUIT: </span><span t-field="o.company_id.vat"/>
                     <br/>
-                    <span style="font-weight:bold; font-size: 18px;">Fecha de Inicio de Actividades: </span><span t-field="o.company_id.l10n_ar_afip_start_date"/>
-                    <br/>
                     <span style="font-weight:bold; font-size: 18px;">Ingresos Brutos: </span><span t-out="o.company_id.l10n_ar_gross_income_type == 'exempt' and 'Exento' or o.company_id.l10n_ar_gross_income_number"/>
+                    <br/>
+                    <span style="font-weight:bold; font-size: 18px;">Fecha de Inicio de Actividades: </span><span t-field="o.company_id.l10n_ar_afip_start_date"/>
                 </div>
             </div>
         </div>
@@ -232,7 +232,7 @@
 
                     <t>
                         <strong>Nº pedido:</strong>
-                        <span t-field="o.origin"/>
+                        <span t-field="o.sale_id.name"/>
                         <br/>
                     </t>
 
