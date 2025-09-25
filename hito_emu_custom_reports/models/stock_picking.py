@@ -1,6 +1,6 @@
 from odoo import models, fields ,api
 
-class AccountMove(models.Model):
+class StockPicking(models.Model):
     _inherit = "stock.picking"
 
     payment_terms = fields.Many2one('account.payment.term')
@@ -13,11 +13,8 @@ class AccountMove(models.Model):
 
     @api.model
     def create(self, vals):
-        if 'partner_id' in vals and 'payment_terms' not in vals:
-            partner = self.env['res.partner'].browse(vals['partner_id'])
-            if partner.property_payment_term_id:
-                vals['payment_terms'] = partner.property_payment_term_id.id
-
         picking = super().create(vals)
-
+        sale_order = self.env['sale.order'].sudo().search([('name','=',picking.origin)])
+        if sale_order:
+            picking.payment_terms = sale_order.payment_term_id
         return picking
