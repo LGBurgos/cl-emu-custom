@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_emu_move_label_user,access_emu_move_label_user,model_emu_move_label,base.group_user,1,1,1,1
