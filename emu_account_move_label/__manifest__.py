@@ -1,13 +1,16 @@
 {
     "name": "EMU Account Move Label",
-    "version": "'1.0",
+    "version": "18.0.1.0.0",
+    "author": "Franz",
+    "category": "Accounting/Accounting",
+    "summary": "Campo Etiqueta en asiento y renombrado de línea",
+    "license": "LGPL-3",
     "depends": ["account"],
-    'author': 'FranG',
     "data": [
         "security/ir.model.access.csv",
         "views/account_move_views.xml",
     ],
-    "license": "LGPL-3",
-    'auto_install': False,
-    'application': False,
+    "installable": True,
+    "application": False,
+    "auto_install": False,
 }
