@@ -1,23 +1,23 @@
 <odoo>
     <!-- HEADER -->
     <template id="purchase_custom_header">
-        <div class="row" style="border-color: black !important; border: 2px solid black;">
-            <div class="col-7 only-right">
-                <div class="row border-top-0" style="font-family:sans-serif">
-                    <div class="col-3">
-                        <img t-if="company.logo" t-att-src="image_data_uri(company.logo)" class="m-2 p-2" alt="Logo" style="width:100px;"/>
+        <div class="row">
+            <div class="col-8">
+                <div class="row" style="font-family:sans-serif">
+                    <div class="col-2">
+                        <img t-if="company.logo" t-att-src="image_data_uri(company.logo)" alt="Logo" style="width:100px;"/>
                     </div>
-                    <div class="col-8 text-start" style="color: black !important;">
+                    <div class="col-10 text-start p-2">
                         <strong><div t-field="o.company_id.company_details"/></strong>
                     </div>
                 </div>
             </div>
-            <div class="col-5" style="text-align: start; font-family:sans-serif;">
-                <span style="margin-left:100px; font-weight:bold; font-size: 22px;">Orden de compra</span>
+            <div class="col-4" style="text-align: start; font-family:sans-serif; line-height:1.2;">
+                <span style="margin-left:100px; font-weight:bold; font-size: 22px;">Orden de compra.</span>
                 <br/>
                 <span style="font-weight:bold; font-size: 18px;">Num. de Doc.: </span> <span t-field="o.name"/>
                 <br/>
-                <span style="font-weight:bold; font-size: 18px;">Fecha: </span><span t-field="o.date_approve"/>
+                <span style="font-weight:bold; font-size: 18px;">Fecha: </span><span t-field="o.date_approve" t-options='{"widget": "date"}'/>
                 <br/>
                 <span style="font-weight:bold; font-size: 18px;">CUIT: </span><span t-field="o.company_id.vat"/>
                 <br/>
@@ -30,18 +30,6 @@
 
     <!-- FOOTER -->
     <template id="purchase_custom_footer">
-        <div class="row p-2" style="border: 2px solid black; font-family:sans-serif;">
-            <div class="col-4 text-start">
-                <strong><span>Subtotal Neto: </span></strong><span t-field="o.amount_untaxed"/>
-            </div>
-            <div class="col-4 text-center">
-                <t t-set="impuestos" t-value="o.amount_total - o.amount_untaxed"/>
-                <strong><span>Impuestos: </span></strong> <span t-field="o.currency_id.symbol"/> <span t-esc="'{:,.2f}'.format(impuestos)"/>
-            </div>
-            <div class="col-4 text-end">
-                <strong><span>Total: </span></strong> <span t-field="o.amount_total"/>
-            </div>
-        </div>
         <div class="row">
             <div name="footer_left_column" class="col-8 text-start" style="font-family:sans-serif;">
                 <strong><span>Observaciones:</span></strong> <span t-field="o.notes"/>
@@ -67,7 +55,7 @@
         </xpath>
 
         <xpath expr="//div[@id='informations']" position="replace">
-            <div id="informations" class="row mb-1" style="margin-top:-10px;border: 2px solid black;">
+            <div id="informations" class="row mb-1" style="margin-top:-10px;">
                 <div class="row p-2" style="font-family:sans-serif;">
                     <div class="col-8">
                         <strong>Sr.(es):</strong> <span t-field="o.partner_id.name"/>
@@ -84,7 +72,7 @@
                     </div>
                 </div>
             </div>
-            <div class="p-2" style="border: 2px solid black;">
+            <div class="p-2">
                 <strong>Cond. de pago: </strong><span t-field="o.payment_term_id.name"/>
                 <br/>
                 <strong>Moneda: </strong> <span t-field="o.currency_id.currency_unit_label"/>
@@ -97,7 +85,7 @@
 
         <xpath expr="//table[1]" position="replace">
             <table class="table o_main_table table-borderless mt-1">
-                <thead style="border: 2px solid black;">
+                <thead>
                     <tr>
                         <th name="th_code" class="p-2 text-start"><strong>Código</strong></th>
                         <th name="th_description" class="p-2 text-start"><strong>Descripción</strong></th>
@@ -177,7 +165,7 @@
         </xpath>
 
         <!-- ELIMINO EL TOTAL DE ABAJO DE LA TABLA-->
-        <xpath expr="//div[@id='total']/div" position="replace"/>
+<!--        <xpath expr="//div[@id='total']/div" position="replace"/>-->
 
         <xpath expr="//span[@t-field='o.payment_term_id']/preceding-sibling::strong[1]" position="replace"/>
         <xpath expr="//span[@t-field='o.payment_term_id']" position="replace"/>
