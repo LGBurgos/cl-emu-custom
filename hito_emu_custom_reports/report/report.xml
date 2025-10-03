@@ -7,11 +7,11 @@
             <field name="default" eval="False"/>
             <field name="format">A4</field>
             <field name="orientation">Portrait</field>
-            <field name="margin_top">56</field>
-            <field name="margin_bottom">120</field>
-            <field name="margin_left">2</field>
-            <field name="margin_right">2</field>
-            <field name="header_spacing">50</field>
+            <field name="margin_top">54</field>
+            <field name="margin_bottom">70</field>
+            <field name="margin_left">0</field>
+            <field name="margin_right">0</field>
+            <field name="header_spacing">54</field>
             <field name="header_line" eval="False"/>
             <field name="dpi">90</field>
         </record>
@@ -31,11 +31,11 @@
             <field name="default" eval="False"/>
             <field name="format">A4</field>
             <field name="orientation">Portrait</field>
-            <field name="header_spacing">42</field>
-            <field name="margin_top">48</field>
+            <field name="header_spacing">46</field>
+            <field name="margin_top">46</field>
             <field name="margin_bottom">60</field>
-            <field name="margin_left">3</field>
-            <field name="margin_right">3</field>
+            <field name="margin_left">0</field>
+            <field name="margin_right">0</field>
             <field name="header_line" eval="False"/>
             <field name="dpi">90</field>
         </record>
