@@ -13,7 +13,7 @@
                 </div>
             </div>
             <div class="col-4" style="text-align: start; font-family:sans-serif; line-height:1.2;">
-                <span style="margin-left:100px; font-weight:bold; font-size: 22px;">Orden de compra.</span>
+                <span style="font-weight:bold; font-size: 22px;">Orden de compra</span>
                 <br/>
                 <span style="font-weight:bold; font-size: 18px;">Num. de Doc.: </span> <span t-field="o.name"/>
                 <br/>
