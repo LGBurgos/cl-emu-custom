@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates>
+  <t t-name="OCA_purchase_default_terms_conditions.report_purchaseorder_with_terms"
+     t-inherit="purchase.report_purchaseorder_document" t-inherit-mode="primary">
+    <xpath expr="//t[@t-foreach='docs' and @t-as='o']" position="inside">
+      <div class="page">
+        <h2>Términos y condiciones</h2>
+        <div t-if="o.notes" t-out="o.notes"/>
+
+        <!-- Campos manuales de la pestaña -->
+        <table class="table table-sm" style="width:100%; margin-top:8px">
+          <tbody>
+            <tr><td><strong>UNIDAD DE MEDIDA:</strong></td><td><span t-esc="o.tc_unidad_medida"/></td>
+                <td><strong>EMBALAJE:</strong></td><td><span t-esc="o.tc_embalaje"/></td></tr>
+            <tr><td><strong>CANTIDAD X ENVASE:</strong></td><td><span t-esc="o.tc_cant_x_envase"/></td>
+                <td><strong>CANTIDAD PEDIDA:</strong></td><td><span t-esc="o.tc_cantidad_pedida"/></td></tr>
+            <tr><td><strong>FORMULA REAJUSTE:</strong></td><td><span t-esc="o.tc_formula_reajuste"/></td>
+                <td><strong>CADENCIA DE ENTREGA:</strong></td><td><span t-esc="o.tc_cadencia_entrega"/></td></tr>
+            <tr><td><strong>LUGAR DE DESCARGA:</strong></td><td><span t-esc="o.tc_lugar_descarga"/></td>
+                <td><strong>VIGENCIA DEL PRECIO:</strong></td><td><span t-esc="o.tc_vigencia_precio"/></td></tr>
+            <tr><td><strong>VIGENCIA DE LA O/C:</strong></td><td><span t-esc="o.tc_vigencia_oc"/></td>
+                <td><strong>NIVEL DE L/CAMBIO PLANO:</strong></td><td><span t-esc="o.tc_nivel_cambio_plano"/></td></tr>
+            <tr><td><strong>REEMPLAZO O/C:</strong></td><td><span t-esc="o.tc_reemplazo_oc"/></td>
+                <td><strong>CONDICIÓN DE PAGO:</strong></td><td><span t-esc="o.tc_condicion_pago"/></td></tr>
+            <tr><td><strong>TIPO DE MONEDA:</strong></td><td><span t-esc="o.tc_tipo_moneda"/></td>
+                <td><strong>LUGAR DE PAGO:</strong></td><td><span t-esc="o.tc_lugar_pago"/></td></tr>
+            <tr><td><strong>MATERIAL:</strong></td><td><span t-esc="o.tc_material"/></td>
+                <td><strong>PPM DEFEC MAX ADMISIBLE:</strong></td><td><span t-esc="o.tc_ppm_defec_max"/></td></tr>
+          </tbody>
+        </table>
+        <div style="margin-top:10px;">
+          <div><strong>1)</strong> <span t-esc="o.tc_item_1"/></div>
+          <div><strong>2)</strong> <span t-esc="o.tc_item_2"/></div>
+          <div><strong>3)</strong> <span t-esc="o.tc_item_3"/></div>
+        </div>
+      </div>
+    </xpath>
+  </t>
+</templates>

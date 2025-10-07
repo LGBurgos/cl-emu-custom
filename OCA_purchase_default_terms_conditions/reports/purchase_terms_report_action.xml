@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <report
+    id="action_report_purchaseorder_with_terms"
+    model="purchase.order"
+    string="Orden de compra con términos y condiciones"
+    report_type="qweb-pdf"
+    name="OCA_purchase_default_terms_conditions.report_purchaseorder_with_terms"
+    file="OCA_purchase_default_terms_conditions.report_purchaseorder_with_terms"
+    print_report_name="'OC_' + (object.name or '') + '_con_TC'"/>
+</odoo>
