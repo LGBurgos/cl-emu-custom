@@ -1,0 +1,50 @@
+<odoo>
+  <record id="view_purchase_order_form_tc" model="ir.ui.view">
+    <field name="name">purchase.order.form.tc</field>
+    <field name="model">purchase.order</field>
+    <field name="inherit_id" ref="purchase.purchase_order_form"/>
+    <field name="arch" type="xml">
+      <xpath expr="//notebook" position="inside">
+        <page string="Términos y condiciones">
+          <group>
+            <group>
+              <field name="tc_unidad_medida"/>
+              <field name="tc_cant_x_envase"/>
+              <field name="tc_formula_reajuste"/>
+              <field name="tc_lugar_descarga"/>
+              <field name="tc_vigencia_oc"/>
+              <field name="tc_reemplazo_oc"/>
+              <field name="tc_tipo_moneda"/>
+              <field name="tc_material"/>
+            </group>
+            <group>
+              <field name="tc_embalaje"/>
+              <field name="tc_cantidad_pedida"/>
+              <field name="tc_cadencia_entrega"/>
+              <field name="tc_vigencia_precio"/>
+              <field name="tc_nivel_cambio_plano"/>
+              <field name="tc_condicion_pago"/>
+              <field name="tc_lugar_pago"/>
+              <field name="tc_ppm_defec_max"/>
+            </group>
+          </group>
+          <group>
+            <field name="tc_item_1"/>
+            <field name="tc_item_2"/>
+            <field name="tc_item_3"/>
+          </group>
+        </page>
+      </xpath>
+    </field>
+  </record>
+
+     <record id="view_purchase_order_form_remove_type" model="ir.ui.view">
+      <field name="name">purchase.order.form.remove.type</field>
+      <field name="model">purchase.order</field>
+      <field name="inherit_id" ref="purchase_order_type.purchase_order_form"/>
+      <field name="priority" eval="90"/>
+      <field name="arch" type="xml">
+        <xpath expr="//field[@name='order_type']" position="replace"/>
+      </field>
+    </record>
+</odoo>
