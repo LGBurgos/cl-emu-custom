@@ -7,5 +7,7 @@
     <field name="report_name">emu_purchase_terms.report_purchaseorder_with_terms_tpl</field>
     <field name="print_report_name">'PO_%s_TyC' % (object.name)</field>
     <field name="report_file">emu_purchase_terms.report_purchaseorder_with_terms_tpl</field>
+    <field name="binding_model_id" ref="purchase.model_purchase_order"/>
+    <field name="binding_type">report</field>
   </record>
 </odoo>
