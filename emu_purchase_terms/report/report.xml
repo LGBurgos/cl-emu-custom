@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="action_report_purchaseorder_with_terms" model="ir.actions.report">
+    <field name="name">Orden de compra con términos y condiciones</field>
+    <field name="model">purchase.order</field>
+    <field name="report_type">qweb-pdf</field>
+    <field name="report_name">emu_purchase_terms.report_purchaseorder_with_terms_tpl</field>
+    <field name="print_report_name">'PO_%s_TyC' % (object.name)</field>
+    <field name="report_file">emu_purchase_terms.report_purchaseorder_with_terms_tpl</field>
+  </record>
+</odoo>
