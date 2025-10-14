@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_order_form_inherit_custom" model="ir.ui.view">
+        <field name="name">sale.order.form.inherit.custom</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//page[@name='order_lines']/field[@name='order_line']/list/field[@name='product_uom']" position="after">
+                 <field name="scheduled_date" force_save="1" readonly="0" string="Plazo de entrega"/>
+            </xpath>
+
+
+            <xpath expr="//page[@name='order_lines']/field[@name='order_line']/list/field[@name='product_uom_qty']" position="after">
+                 <field name="release"/>
+            </xpath>
+
+            <xpath expr="//page[@name='order_lines']/field[@name='order_line']/list/field[@name='customer_lead']" position="attributes">
+                 <attribute name="column_invisible">True</attribute>
+            </xpath>
+
+        </field>
+    </record>
+</odoo>
