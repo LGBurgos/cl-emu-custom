@@ -20,8 +20,8 @@
         <field name="model">product.product</field>
         <field name="inherit_id" ref="product.product_kanban_view"/>
         <field name="arch" type="xml">
-              <xpath expr="//span[contains(text(), 'Price:')]" position="attributes">
-                <attribute name="groups">hide_product_price_cost.hide_product_price_cost_group_user_show_product_price</attribute> <!-- Restrict to admin group -->
+              <xpath expr="//span[field[@name='lst_price']]" position="attributes">
+                <attribute name="groups">hide_product_price_cost.hide_product_price_cost_group_user_show_product_price</attribute>
             </xpath>
         </field>
     </record>
