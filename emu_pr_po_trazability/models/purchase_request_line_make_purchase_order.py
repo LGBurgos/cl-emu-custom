@@ -43,7 +43,13 @@ class PurchaseRequestLineMakePurchaseOrderInherit(models.TransientModel):
                 if purchase.origin:
                     purchase.origin += f',{self.item_ids.request_id.display_name}'
                 else:
-                    purchase.origin = f'{self.item_ids.request_id.display_name}'
+                    list_pr = []
+                    if self.item_ids:
+                        for ri in self.item_ids.request_id:
+                                list_pr.append(ri.display_name)
+                    list_pr.sort()
+                    purchase.origin = ', '.join(list_pr)
+
 
             # Look for any other PO line in the selected PO with same
             # product and UoM to sum quantities instead of creating a new
