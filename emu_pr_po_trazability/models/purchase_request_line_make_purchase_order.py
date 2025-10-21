@@ -5,6 +5,7 @@ import pytz
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 from odoo.tools import get_lang
+from stone.backends.python_rsrc.stone_validators import ValidationError
 
 
 class PurchaseRequestLineMakePurchaseOrderInherit(models.TransientModel):
@@ -26,11 +27,20 @@ class PurchaseRequestLineMakePurchaseOrderInherit(models.TransientModel):
                 raise UserError(_("Enter a positive quantity."))
             if self.purchase_order_id:
                 purchase = self.purchase_order_id
+                if len(self.item_ids.request_id.request_type) > 1:
+                    raise UserError('Para poder crear una PO a partir de múltiples PR, estos deben ser del mismo tipo de solicitud.')
                 purchase.write({'request_type': self.item_ids.request_id.request_type.id})
+
+                list_pr = [ri.display_name for ri in self.item_ids.request_id]
+
                 if purchase.origin:
-                    purchase.origin += f',{self.item_ids.request_id.display_name}'
-                else:
-                    purchase.origin = f'{self.item_ids.request_id.display_name}'
+                    existing = [o.strip() for o in purchase.origin.split(',') if o.strip()]
+                    list_pr.extend(existing)
+
+                list_pr = sorted(set(list_pr))
+
+                purchase.origin = ', '.join(list_pr)
+
             if not purchase:
                 po_data = self._prepare_purchase_order(
                     line.request_id.picking_type_id,
@@ -38,10 +48,20 @@ class PurchaseRequestLineMakePurchaseOrderInherit(models.TransientModel):
                     line.company_id,
                     line.origin,
                 )
+                if len(self.item_ids.request_id.request_type) > 1:
+                    raise UserError('Para poder crear una PO a partir de múltiples PR, estos deben ser del mismo tipo de solicitud.')
                 po_data.update({'request_type': self.item_ids.request_id.request_type.id})
                 purchase = purchase_obj.create(po_data)
                 if purchase.origin:
-                    purchase.origin += f',{self.item_ids.request_id.display_name}'
+                    list_pr = [ri.display_name for ri in self.item_ids.request_id]
+
+                    if purchase.origin:
+                        existing = [o.strip() for o in purchase.origin.split(',') if o.strip()]
+                        list_pr.extend(existing)
+
+                    list_pr = sorted(set(list_pr))
+
+                    purchase.origin = ', '.join(list_pr)
                 else:
                     list_pr = []
                     if self.item_ids:
