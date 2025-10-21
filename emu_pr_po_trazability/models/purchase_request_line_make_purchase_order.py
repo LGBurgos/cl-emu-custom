@@ -5,7 +5,6 @@ import pytz
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 from odoo.tools import get_lang
-from stone.backends.python_rsrc.stone_validators import ValidationError
 
 
 class PurchaseRequestLineMakePurchaseOrderInherit(models.TransientModel):
