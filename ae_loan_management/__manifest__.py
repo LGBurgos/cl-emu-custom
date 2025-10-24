@@ -24,7 +24,7 @@
 
 {
     "name": "Loan Management",
-    "version": "17.0.1.4.5",
+    "version": "18.0.1.4.5",
     'summary': 'The Complete Loan management Solutions',
     "author": "AtharvERP Business solution",
     "website": "https://www.odoocode.com/",
