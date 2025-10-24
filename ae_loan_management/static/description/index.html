@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Odoo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+          integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+</head>
+<!-- odoo description page css -->
+<style>
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    .h1,
+    .h2,
+    .h3,
+    .h4,
+    .h5,
+    .h6 {
+        font-family: "Montserrat", sans-serif;
+        font-weight: 400;
+        line-height: 1.1;
+        color: #21272b;
+    }
+
+    ul {
+        color: #222020;
+    }
+
+    * {
+        font-family: "Montserrat", sans-serif;
+    }
+
+
+
+
+</style>
+
+<body>
+    <div class="container">
+            <div class="mt-md-0 mt-3">
+                <div class="d-flex align-items-center ">
+                    <h6 class="mb-0 mt-2" style="font-size: 14px;min-width:90px">Community: </h6>
+                    <div class="row mx-0">
+                            <span class="text-white ml-2 mt-2" style="padding: .3em .8em;
+                                            background-color: #875A7B !important;
+                                            font-size: 10px;
+                                            border-radius: 2px;">
+                                <b> v 16.0 <i class="fa fa-check ml-1 "></i></b>
+                            </span>
+                            <span class="text-white ml-2 mt-2" style="padding: .3em .8em;
+                                            background-color: #875A7B !important;
+                                            font-size: 10px;
+                                            border-radius: 2px;">
+                                <b> v 15.0 <i class="fa fa-check ml-1 "></i></b>
+                            </span>
+                    	    <span class="text-white ml-2 mt-2" style="padding: .3em .8em;
+                                            background-color: #875A7B !important;
+                                            font-size: 10px;
+                                            border-radius: 2px;">
+                                <b> v 14.0 <i class="fa fa-check ml-1 "></i></b>
+                            </span>
+                            <span class="text-white ml-2 mt-2" style="padding: .3em .8em;
+                                            background-color: #875A7B !important;
+                                            font-size: 10px;
+                                            border-radius: 2px;">
+                                <b> v 13.0 <i class="fa fa-check ml-1 "></i></b>
+                            </span>
+                            <span class="text-white ml-2 mt-2" style="padding: .3em .8em;
+                                            background-color: #875A7B !important;
+                                            font-size: 10px;
+                                            border-radius: 2px;">
+                                <b> v 12.0 <i class="fa fa-check ml-1 "></i></b>
+                            </span>
+                        <span class="text-white ml-2 mt-2" style="padding: .3em .8em;
+                                                background-color: #875A7B !important;
+                                                font-size: 10px;
+                                                border-radius: 2px;">
+                                <b> v 11.0 <i class="fa fa-check ml-1 "></i></b>
+                            </span>
+                    </div>
+                </div>
+                <div class="d-flex align-items-center  mt-1">
+                    <h6 class="mb-0 mt-2" style="font-size: 14px;min-width:90px">Enterprise:</h6>
+                    <div class="row mx-0">
+                        <span class="text-white ml-2 mt-2" style="padding: .3em .8em;
+                                            background-color: #875A7B !important;
+                                            font-size: 10px;
+                                            border-radius: 2px;">
+                                <b> v 16.0 <i class="fa fa-check ml-1 "></i></b>
+                            </span>
+                            <span class="text-white ml-2 mt-2" style="padding: .3em .8em;
+                                            background-color: #875A7B !important;
+                                            font-size: 10px;
+                                            border-radius: 2px;">
+                                <b> v 15.0 <i class="fa fa-check ml-1 "></i></b>
+                            </span>
+                            <span class="text-white ml-2 mt-2" style="padding: .3em .8em;
+                                            background-color: #875A7B !important;
+                                            font-size: 10px;
+                                            border-radius: 2px;">
+                                <b> v 14.0 <i class="fa fa-check ml-1 "></i></b>
+                            </span>
+                            <span class="text-white ml-2 mt-2" style="padding: .3em .8em;
+                                            background-color: #875A7B !important;
+                                            font-size: 10px;
+                                            border-radius: 2px;">
+                                <b> v 13.0 <i class="fa fa-check ml-1 "></i></b>
+                            </span>
+                            <span class="text-white ml-2 mt-2" style="padding: .3em .8em;
+                                            background-color: #875A7B !important;
+                                            font-size: 10px;
+                                            border-radius: 2px;">
+                                <b> v 12.0 <i class="fa fa-check ml-1 "></i></b>
+                            </span>
+                        <span class="text-white ml-2 mt-2" style="padding: .3em .8em;
+                                            background-color: #875A7B !important;
+                                            font-size: 10px;
+                                            border-radius: 2px;">
+                                <b> v 11.0 <i class="fa fa-check ml-1 "></i></b>
+                            </span>
+                    </div>
+                </div><br/>
+                <!-- center>
+                    <div class="container">
+                        <h5 style="font-size: 25px;color:#714C67">
+                            Click on <b>Live Preview</b> button to see our app demo in version 15.
+                            <center><b>
+                                Credentials : demo/demo</b>
+                            </center>
+                        </h5>
+                    </div>
+                </center> -->
+            </div>
+        <br/>
+
+        <div class="text-center py-4">
+            <p style="font-size: 18px;border-width: 3px;border-style: solid;
+                border-image: linear-gradient( to bottom, red, rgba(0, 0, 0, 0) ) 1 100%;
+                text-align:justify;padding:15px;"
+               class="px-sm-4 p-2 pt-4">
+                This Loan Management app is an incredibly powerful and versatile loan app that help you to manage loan
+                with invoices, Journal Entries, Outstanding balance, principal and interest balalnce, payments etc.
+                Also provides different ways to pay loan installments and provides functionality to change loan installments date.
+            </p>
+        </div>
+
+        <video style="max-width:90%" controls>
+            <source src="images/loan.mp4" type="video/mp4"></video><br/><br/>
+
+        <center><img src="images/loan.gif" alt="arrow"></center><br/><br/>
+
+        <div class="p-3 pl-5 bg-white" style="border-radius: 10px;margin-bottom: 20px;border-left: 11px solid #c7c5c5;border-right: 11px solid #c7c5c5;box-shadow: 0px 0px 7px 1px #c7c5c5;">
+            <h5 class="mb-4 mt-3" style="margin: 0; font-weight: bold;"><img src="images/flame.svg"
+                                                                             alt="arrow"
+                                                                             style="width:35px;margin-right:2px">
+                Hot Features</h5>
+            <ul class="list-unstyled" style="font-size:15px;border-radius: 10px;">
+                <li class="d-flex align-items-baseline mb-2">
+                    <img src="images/forward-arrow.svg" alt="arrow"
+                         style="width:15px;margin-right:10px">
+                    <span><b>Auto creation of loan installments</b></span><br/>
+                    <p style="text-align:justify;padding:5px;">
+                        Scheduler auto creates loan installment invoice base on date.
+                    </p>
+                </li>
+                <li class="d-flex align-items-baseline mb-2">
+                    <img src="images/forward-arrow.svg" alt="arrow"
+                         style="width:15px;margin-right:10px">
+                    <span><b>Postpone Installments</b></span><br/>
+                    <p style="text-align:justify;padding:5px;">Postpone installments by certain amount of days or
+                        months, also reset it if need. By certain amount of month postpone installment allow
+                        to postpone by selecting loan installment's items.</p>
+                </li>
+                 <li class="d-flex align-items-baseline mb-2">
+                    <img src="images/forward-arrow.svg" alt="arrow"
+                         style="width:15px;margin-right:10px">
+                    <span><b>Extra Payment</b></span><br/>
+                    <p style="text-align:justify;padding:5px;">Pay extra amount of loan with some options.
+                        Like cover that amount only in principal amount or in installments or both.</p>
+                </li>
+                <li class="d-flex align-items-baseline mb-2">
+                    <img src="images/forward-arrow.svg" alt="arrow"
+                         style="width:15px;margin-right:10px">
+                    <span><b>Close Loan</b></span><br/>
+                    <p style="text-align:justify;padding:5px;">Don’t allow to close if there is any partial or paid loan
+                        iinstallments invoice.Close loan functionality cancel all draf and open loan installments invoices.
+                        Add ‘C’ after loan name. </p>
+                </li>
+                <li class="d-flex align-items-baseline mb-2">
+                    <img src="images/forward-arrow.svg" alt="arrow"
+                         style="width:15px;margin-right:10px">
+                    <span><b>Cancel Loan</b></span><br/>
+                    <p style="text-align:justify;padding:5px;">Cancel loan funcionality cancel all draft and open loan
+                        installments invoices. Marks partial paid loan installments invoices as fully paid with
+                        Write-Off account.</p>
+                </li>
+                 <li class="d-flex align-items-baseline mb-2">
+                    <img src="images/forward-arrow.svg" alt="arrow"
+                         style="width:15px;margin-right:10px">
+                    <span><b>Report</b></span><br/>
+                    <p style="text-align:justify;padding:5px;">PDF report to print loan details</p>
+                </li>
+                <li class="d-flex align-items-baseline mb-2">
+                    <img src="images/forward-arrow.svg" alt="arrow"
+                         style="width:15px;margin-right:10px">
+                    <span><b>Send Loan Detail to customer via Email</b></span><br/>
+                    <p style="text-align:justify;padding:5px;">User can send email for loan detail with pdf file.</p>
+                </li>
+                <li class="d-flex align-items-baseline mb-2">
+                    <img src="images/forward-arrow.svg" alt="arrow"
+                         style="width:15px;margin-right:10px">
+                    <span><b>Server Actions</b></span><br/>
+                    <p style="text-align:justify;padding:5px;">
+                        1. To update loan installments invoices number. <br/>
+                        2. To Create loan installment invoices manually before today date.
+                    </p>
+                </li>
+            </ul>
+        </div>
+
+        <div class="p-3 pl-5 bg-white" style="border-radius: 10px;margin-bottom: 20px;border-left: 11px solid #c7c5c5;border-right: 11px solid #c7c5c5;box-shadow: 0px 0px 7px 1px #c7c5c5;">
+             <h5 class="mb-4 mt-3" style="margin: 0; font-weight: bold;"><img src="images/hand.png"
+                                                                             alt="arrow"
+                                                                             style="width:35px;margin-right:2px">
+                Key Features</h5>
+            <ul class="list-unstyled" style="font-size:15px;border-radius: 10px;">
+                <li class="d-flex align-items-baseline mb-2">
+                    <p style="text-align:justify">
+                         <img src="images/forward-arrow.svg" alt="arrow"
+                         style="width:15px;margin-right:10px">
+                        Provides all details like Transaction history, Payment history, Outstanding balance, Invoices,
+                        Total due amounts, Due days, Paid tax, insurance, principal, interest in one view. </p>
+                </li>
+                <li class="d-flex align-items-baseline mb-2">
+                    <p style="text-align:justify;padding:5px">
+                         <img src="images/forward-arrow.svg" alt="arrow"
+                         style="width:15px;margin-right:10px">
+                        Transaction history of loan installments invoices and its payments with current date balance.
+                        Creates transaction history on validation of loan installment invoice and also removes it when
+                        cancel loan installment invoice. </p>
+                </li>
+                <li class="d-flex align-items-baseline mb-2">
+                    <p style="text-align:justify;padding:5px">
+                         <img src="images/forward-arrow.svg" alt="arrow"
+                         style="width:15px;margin-right:10px">
+                        Payment history of all loan payments and linked invoices with payments. Creates payment
+                        history when paying amount and removes when cancling payment. Remove invoice link from payment
+                        history on unreconcilation of payment from invoice.</p>
+                </li>
+                <li class="d-flex align-items-baseline mb-2">
+                    <p style="text-align:justify;padding:5px">
+                         <img src="images/forward-arrow.svg" alt="arrow"
+                         style="width:15px;margin-right:10px">
+                        Differenciate loan products by addind ‘Propety’ category inside product.</p>
+                </li>
+                <li class="d-flex align-items-baseline mb-2">
+                    <p style="text-align:justify;padding:5px">
+                         <img src="images/forward-arrow.svg" alt="arrow"
+                         style="width:15px;margin-right:10px">
+                        Creates Processing fee invoice when validating loan.</p>
+                </li>
+                 <li class="d-flex align-items-baseline mb-2">
+                    <p style="text-align:justify;padding:5px">
+                        <img src="images/forward-arrow.svg" alt="arrow"
+                         style="width:15px;margin-right:10px">
+                        Displays Loan details and Payment amount details from customer view so user can see total
+                        loans and total payment amounts of any customer.</p>
+                </li>
+                <li class="d-flex align-items-baseline mb-2">
+                    <p style="text-align:justify;padding:5px">
+                        <img src="images/forward-arrow.svg" alt="arrow"
+                         style="width:15px;margin-right:10px">
+                        Displays Total Cashed and Paid details from product view.</p>
+                </li>
+            </ul>
+        </div>
+
+        <br/>
+        <div>
+            <h5 style="font-size: 25px;color:#714C67">Loan Accounts and Products Configuration</h5>
+            <img src="images/loan_setting.png" alt="arrow" style="margin-top:20px;margin-left:30px">
+        </div>
+
+        <br/>
+        <div>
+            <h5 style="font-size: 25px;color:#714C67">Properties</h5>
+            <img src="images/properties.png" alt="arrow" style="margin-top:20px;margin-left:30px;max-width:90%">
+        </div>
+
+        <br/>
+        <div>
+            <h5 style="font-size: 25px;color:#714C67">Loan</h5>
+            <img src="images/loan_1.png" alt="arrow" style="margin-top:20px;margin-left:30px;max-width:90%">
+        </div><br/>
+        <div>
+            <h5 style="font-size: 25px;color:#714C67">Interest Type</h5>
+            <img src="images/loan3.png" alt="arrow" style="margin-top:20px;margin-left:30px;max-width:90%">
+        </div><br/>
+        <div>
+            <h5 style="font-size: 25px;color:#714C67">Loan Installments with simple Interest Type</h5>
+            <img src="images/loan4.png" alt="arrow" style="margin-top:20px;margin-left:30px;max-width:90%">
+        </div>
+        <div>
+            <h5 style="font-size: 25px;color:#714C67">Loan Installments with compound Interest Type</h5>
+            <img src="images/loan5.png" alt="arrow" style="margin-top:20px;margin-left:30px;max-width:90%">
+        </div>
+
+        <br/>
+        <div>
+            <h5 style="font-size: 25px;color:#714C67">User Setting - Loan rights</h5>
+            <img src="images/loan_access.png" alt="arrow" style="margin-top:20px;margin-left:30px;max-width:90%">
+        </div>
+
+        <br/>
+        <div>
+            <h5 style="font-size: 25px;color:#714C67">Report</h5>
+            <img src="images/report_page_1.png" alt="arrow" style="margin-top:20px;margin-left:30px;max-width:90%"><br/>
+            <img src="images/report_page_2.png" alt="arrow" style="margin-top:20px;margin-left:30px;max-width:90%">
+        </div>
+
+        <br/>
+        <div>
+            <h5 style="font-size: 25px;color:#714C67">Send Loan Detail to Customer</h5>
+            <img src="images/send_loan_detail_action.png" alt="arrow" style="margin-top:20px;margin-left:30px;max-width:30%">
+            <img src="images/send_loan_detail_view.png" alt="arrow" style="margin-top:20px;margin-left:30px;max-width:60%">
+        </div>
+
+        <br/>
+        <div>
+            <h5 style="font-size: 25px;color:#714C67">Postpone Installments</h5>
+            - Allow to postpone loan installments date by certain number of days or month by selecting specific date.
+            <br/>
+            - This functionality postpone open loan invoices due date and invoice date or postpone installments date which
+              are after selected date.
+            <br/>
+            - By certain month option user has choice to postpone whole invoice or want to postpone invoice by selecting
+              number of items(like Principal, Interest, Tax or Insurance).
+            <br/>
+            - Also provides reset functionaly that will reset all instllments dates and invoices.
+            <br />
+            - Adds history for all intallment changes.
+            <br/>
+
+            <video style="max-width:90%" controls>
+           <source src="images/postpone_installments.mp4" type="video/mp4"></video><br/><br/>
+
+            <center><img src="images/postpone_installments.gif" alt="arrow"></center><br/><br/>
+        </div>
+
+        <br/>
+        <div>
+            <h5 style="font-size: 25px;color:#714C67">Extra Payment</h5>
+            - Allow to pay loan amount in different way like,
+            <br/>1. Settle with next due instalment rest with principal
+            <br/>2. Cover all next due installments
+            <br/>3. Cover only principal outstanding
+            <br/><br/>
+            <b>1. Settle with next due instalment rest with principal</b><br/>
+            - Using this way user can pay first installment and if amount greater than first installment then rest
+            pays in principal amount.<br/><br/>
+            <b>2. Cover all next due installments</b><br/>
+            - Cover all next due installments option pays all amount in installments(Loan invoices).<br/><br />
+            <b>3. Cover only principal outstanding</b><br/>
+            - To pay only in principal amount.<br/><br />
+
+            - This also changes installment schedule based on payment amount and payment method.<br />
+
+            - Also provide functionality to close loan, this will calculate total open invoices amount plus
+            remaining principal. So user can pay all remaininging amount and close loan directly.<br/><br/>
+
+            <video style="max-width:90%" controls>
+           <source src="images/extra_payment.mp4" type="video/mp4"></video><br/><br/>
+
+            <center><img src="images/extra_payment.gif" alt="arrow"></center><br/><br/>
+        </div>
+
+
+
+
+        <br/><br/>
+        <div><strong>Note:</strong> Add only folowing prefix in loan Journal sequence.<br/>
+            <strong>Legend (for prefix, suffix)</strong><br/>
+            Current Year with Century: %(year)s<br/>
+            Current Year without Century: %(y)s<br/>
+            Month: %(month)s<br/>
+            Day: %(day)s<br/>
+            Day of the Year: %(doy)s<br/>
+            Week of the Year: %(woy)s<br/>
+            Day of the Week (0:Monday): %(weekday)s<br/>
+            Hour 00->24: %(h24)s<br/>
+            Hour 00->12: %(h12)s<br/>
+            Minute: %(min)s<br/>
+            Second: %(sec)s<br/>
+        </div>
+
+    </div>
+
+    <section class="e-odoo-apps text-center" style="max-width: 1170px; margin-top: 50px; margin-bottom: 50px;">
+        <div class="container">
+            <h3 style=" font-size: 32px; font-weight: 700; color: #109e92; margin-bottom: 40px; margin-top: 0;">Atharv ERP Services</h3>
+            <h2>We provide the following services :</h2><br/>
+            <div class="row">
+                <div class="col-md-3">
+                    <a href="http://atharverp.com" target="_blank"><img src="icon/development.png" class="img-responsive" style="margin: auto;" alt="Odoo development"></a>
+                    <h4 style="margin-top: 20px; font-size: 17px; color: #21272b; font-weight: 700; margin-bottom: 0;">Odoo Development</h4>
+                </div>
+                <div class="col-md-3">
+                    <a href="http://atharverp.com" target="_blank"><img src="icon/implementation.png" class="img-responsive" style="margin: auto;" alt="Odoo Implementation"></a>
+                    <h4 style="margin-top: 20px; font-size: 17px; color: #21272b; font-weight: 700; margin-bottom: 0;">Odoo Implementation</h4>
+                </div>
+                <div class="col-md-3">
+                    <a href="http://atharverp.com" target="_blank"><img src="icon/integration.png" class="img-responsive" style="margin: auto;" alt="Odoo Integration"></a>
+                    <h4 style="margin-top: 20px; font-size: 17px; color: #21272b; font-weight: 700; margin-bottom: 0;">Odoo Integration</h4>
+                </div>
+                <div class="col-md-3">
+                    <a href="http://atharverp.com" target="_blank"><img src="icon/data_migration.png" class="img-responsive" style="margin: auto;" alt="Odoo Data Migration"></a>
+                    <h4 style="margin-top: 20px; font-size: 17px; color: #21272b; font-weight: 700; margin-bottom: 0;">Odoo Data Migration</h4>
+                </div>
+                <div class="col-md-3">
+                    <a href="http://atharverp.com" target="_blank"><img src="icon/code_migration.png" class="img-responsive" style="margin: auto;" alt="Odoo Code Migration"></a>
+                    <h4 style="margin-top: 20px; font-size: 17px; color: #21272b; font-weight: 700; margin-bottom: 0;">Odoo Code Migration</h4>
+                </div>
+                <div class="col-md-3">
+                    <a href="http://atharverp.com" target="_blank"><img src="icon/training.png" class="img-responsive" style="margin: auto;" alt="Odoo Training"></a>
+                    <h4 style="margin-top: 20px; font-size: 17px; color: #21272b; font-weight: 700; margin-bottom: 0;">Odoo Training</h4>
+                </div>
+                <div class="col-md-3">
+                    <a href="http://atharverp.com" target="_blank"><img src="icon/configuration.png" class="img-responsive" style="margin: auto;" alt="Odoo Configuration"></a>
+                    <h4 style="margin-top: 20px; font-size: 17px; color: #21272b; font-weight: 700; margin-bottom: 0;">Odoo Configuration</h4>
+                </div>
+                <div class="col-md-3">
+                    <a href="http://atharverp.com" target="_blank"><img src="icon/support.png" class="img-responsive" style="margin: auto;" alt="Odoo Support"></a>
+                    <h4 style="margin-top: 20px; font-size: 17px; color: #21272b; font-weight: 700; margin-bottom: 0;">Odoo Support</h4>
+                </div>
+            </div>
+            <br/><br/>
+        </div>
+    </section>
+
+    <footer style="height: 55px; background-color: #33364d;">
+        <h1 style="text-align: center; color: white;font: initial;font-size: 17px;"><br/><b>Do not hesiste for further assistant at atharverp@gmail.com for more support or hire dedicated resources.</b></h1>
+    </footer>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+</html>
+
+
