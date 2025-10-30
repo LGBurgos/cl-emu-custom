@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Vista de árbol (lista) para notas bancarias -->
+    <record id="view_bank_statement_note_tree" model="ir.ui.view">
+        <field name="name">bank.statement.note.tree</field>
+        <field name="model">bank.statement.note</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="code"/>
+                <field name="name"/>
+                <field name="active"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Vista de formulario para notas bancarias -->
+    <record id="view_bank_statement_note_form" model="ir.ui.view">
+        <field name="name">bank.statement.note.form</field>
+        <field name="model">bank.statement.note</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="code" />
+                            <field name="name" />
+                            <field name="active" />
+                        </group>
+                        <group>
+                            <field name="color" />
+                            <field name="company_id" groups="base.group_multi_company"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Acción para abrir notas bancarias -->
+    <record id="action_bank_statement_note" model="ir.actions.act_window">
+        <field name="name">Notas de Extracto Bancario</field>
+        <field name="res_model">bank.statement.note</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_bank_statement_note_tree"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Crear una nueva nota para extractos bancarios
+            </p>
+            <p>
+                Las notas se utilizan en operaciones manuales de extractos bancarios
+                para clasificar y documentar los movimientos.
+            </p>
+        </field>
+    </record>
+
+    <!-- Menú para acceder a notas bancarias -->
+    <menuitem
+        id="menu_bank_statement_note"
+        name="Notas de Extracto"
+        parent="account.menu_finance_reports"
+        action="action_bank_statement_note"
+        sequence="20"/>
+
+</odoo>

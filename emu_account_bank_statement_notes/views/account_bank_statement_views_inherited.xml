@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Heredar y extender la vista de formulario del movimiento de extracto bancario -->
+    <record id="view_bank_statement_line_form_inherited" model="ir.ui.view">
+        <field name="name">account.bank.statement.line.form.inherited</field>
+        <field name="model">account.bank.statement.line</field>
+        <field name="inherit_id" ref="account.view_bank_statement_line_form"/>
+        <field name="arch" type="xml">
+            <!-- Buscar el campo 'note' existente y agregar nuestro campo many2one antes -->
+            <xpath expr="//field[@name='note']" position="before">
+                <field name="statement_note_id" />
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Extender la vista de árbol del movimiento de extracto bancario -->
+    <record id="view_bank_statement_line_tree_inherited" model="ir.ui.view">
+        <field name="name">account.bank.statement.line.tree.inherited</field>
+        <field name="model">account.bank.statement.line</field>
+        <field name="inherit_id" ref="account.view_bank_statement_line_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="after">
+                <field name="statement_note_id" />
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
