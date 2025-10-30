@@ -14,7 +14,7 @@
     'data': [
         'security/ir.model.access.csv',
         'views/bank_statement_note_views.xml',
-        'views/account_bank_statement_views_inherited.xml',
+        # 'views/account_bank_statement_views_inherited.xml',
     ],
     'installable': True,
     'application': False,
