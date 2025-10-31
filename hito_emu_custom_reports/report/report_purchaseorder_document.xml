@@ -108,10 +108,16 @@
                         <tr t-att-class="'fw-bold o_line_section' if line.display_type == 'line_section' else 'fst-italic o_line_note' if line.display_type == 'line_note' else ''">
                             <t t-if="not line.display_type">
                                 <td id="product_code" class="text-start">
-                                    <span t-field="line.product_id.default_code"/>
+                                    <strong><span t-field="line.product_id.default_code"/></strong>
                                 </td>
                                 <td id="product" class="text-start">
-                                    <span t-field="line.product_id.name"/>
+                                    <strong><span t-field="line.product_id.name"/>
+                                    <t t-set="product_name" t-value="line.product_id.display_name"/>
+                                    <t t-set="description" t-value="line.name.replace(product_name, '').strip()"/>
+                                    <t t-if="description">
+                                        (<span t-esc="description"/>)
+                                    </t>
+                                    </strong>
                                 </td>
                                 <td class="text-start">
                                     <span t-field="line.date_planned" t-options="{'date_only': True}"/>

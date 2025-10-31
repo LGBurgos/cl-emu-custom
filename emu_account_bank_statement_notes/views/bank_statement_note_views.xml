@@ -14,7 +14,7 @@
         </field>
     </record>
 
-    <!-- Vista de formulario para notas bancarias -->
+    <!-- Vista de formulario para notas bancariasa -->
     <record id="view_bank_statement_note_form" model="ir.ui.view">
         <field name="name">bank.statement.note.form</field>
         <field name="model">bank.statement.note</field>
@@ -28,7 +28,6 @@
                             <field name="active" />
                         </group>
                         <group>
-                            <field name="color" />
                             <field name="company_id" groups="base.group_multi_company"/>
                         </group>
                     </group>
@@ -49,7 +48,7 @@
     <menuitem
         id="menu_bank_statement_note"
         name="Notas de Extracto"
-        parent="account.menu_finance"
+        parent="account.account_banks_menu"
         action="action_bank_statement_note"
         sequence="100"/>
 
