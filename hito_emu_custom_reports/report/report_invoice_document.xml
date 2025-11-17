@@ -257,9 +257,6 @@
                     <div class="col text-start">
                         <strong><span>Cod. Interno:  </span></strong><span t-field="o.partner_id.internal_code"/>
                     </div>
-                    <div class="col text-start">
-                        <strong><span>N° Identif.:  </span></strong> <span t-field="o.partner_id.num_identificacion"/>
-                    </div>
 
                 </div>
             </div>
