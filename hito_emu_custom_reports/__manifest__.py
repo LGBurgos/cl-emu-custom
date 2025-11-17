@@ -10,7 +10,6 @@
         'views/stock_picking.xml',
         'views/sale_order_view.xml',
         'views/transporte.xml',
-        'views/res_partner.xml',
         'report/report.xml',
         'report/report_invoice_document.xml',
         'report/report_delivery_document.xml',
