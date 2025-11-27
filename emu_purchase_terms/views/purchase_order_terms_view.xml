@@ -23,7 +23,7 @@
               <field name="tc_cadencia_entrega"/>
               <field name="tc_vigencia_precio"/>
               <field name="tc_nivel_cambio_plano"/>
-              <field name="tc_condicion_pago"/>
+<!--              <field name="tc_condicion_pago"/>-->
               <field name="tc_lugar_pago"/>
               <field name="tc_ppm_defec_max"/>
             </group>
