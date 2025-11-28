@@ -105,7 +105,7 @@
                     </t>
 
                     <br/>
-                    <strong>Forma de pago: </strong> <span t-field="o.payment_terms"/>
+                    <!-- <strong>Forma de pago: </strong> <span t-field="o.payment_terms"/> -->
 
 
                 </div>
@@ -114,11 +114,14 @@
             <xpath expr="//table[@name='stock_move_line_table']" position="replace">
                 <table class="table table-borderless mt48" t-elif="o.move_line_ids and o.state=='done'" name="stock_move_line_table">
                     <thead style="border-top: 2px solid black; border-bottom: 2px solid black;">
-                        <th class="p-1">
+                        <!-- <th class="p-1">
                             <span>CODIGO</span>
+                        </th> -->
+                        <th class="p-1">
+                            <span>DESCRIPCIÓN</span>
                         </th>
                         <th class="p-1">
-                            <span>DESCRIPCION</span>
+                            <span>DESCRIPCIÓN PARA ORDENES DE ENTREGA</span>
                         </th>
                          <th class="p-1">
                             <span>CANTIDAD</span>
@@ -127,11 +130,14 @@
                     <tbody>
                         <t t-foreach="o.move_line_ids" t-as="line">
                             <tr>
-                                <td class="p-2">
+                                <!-- <td class="p-2">
                                     <span t-esc="line.product_id.default_code"/>
-                                </td>
+                                </td> -->
                                 <td class="p-2">
                                     <span t-esc="line.product_id.name"/>
+                                </td>
+                                <td class="p-2">
+                                    <span t-esc="line.product_id.description_pickingout"/>
                                 </td>
                                 <td class="p-2">
                                     <span t-esc="line.quantity"/>
@@ -230,4 +236,5 @@
             </xpath>
 
         </template>
+
 </odoo>
