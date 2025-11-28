@@ -1,7 +1,7 @@
 {
     "name": "Hito EMU Custom Reports",
     "version": "18.0",
-    "depends": ['l10n_ar', 'l10n_ar_stock'],
+    "depends": ['l10n_ar', 'l10n_ar_stock','purchase_request','purchase_request_type'],
     "category": "",
     "summary": "Custom reports",
     "data": [
