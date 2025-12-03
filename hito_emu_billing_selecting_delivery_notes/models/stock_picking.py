@@ -5,10 +5,14 @@ class StockPicking(models.Model):
 
     facturado = fields.Selection([('facturado', 'Facturado'), ('no_facturado', 'No Facturado')], default='no_facturado', store=True, compute="compute_state")
 
-    @api.depends('invoice_count')
+    @api.depends(
+        'move_ids.invoice_line_ids',
+        'move_ids.invoice_line_ids.move_id',
+        'move_ids.invoice_line_ids.move_id.state'
+    )
     def compute_state(self):
         for rec in self:
-            if rec.invoice_count > 0:
-                rec.facturado = 'facturado'
-            else:
-                rec.facturado = 'no_facturado'
+            rec.facturado = 'facturado' if rec.invoice_count > 0 else 'no_facturado'
+
+
+
