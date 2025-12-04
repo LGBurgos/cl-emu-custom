@@ -54,6 +54,12 @@ class SaleAdvancePaymentInv(models.TransientModel):
     def create_invoices(self):
         self._check_amount_is_positive()
 
+        cancelled_sos = self.sale_order_ids.filtered(lambda so: so.state == 'cancel')
+        if cancelled_sos:
+            names = ", ".join(cancelled_sos.mapped("name"))
+            raise UserError(
+                f"No se puede crear una factura porque la(s) Orden(es) de Venta está(n) CANCELADA(S): {names}")
+
         if self.advance_payment_method == "facturar_pickings_seleccionados" and self.select_pickings:
             move_lines = self.select_pickings.mapped("move_ids")
 
