@@ -92,4 +92,51 @@ class SaleAdvancePaymentInv(models.TransientModel):
         else:
             invoices = self._create_invoices(self.sale_order_ids)
 
+            for inv in invoices:
+
+                # Eliminar líneas creadas por Odoo
+                inv.invoice_line_ids.unlink()
+
+                invoice_lines = []
+
+                for so_line in self.sale_order_ids.order_line:
+
+                    # Obtener stock moves entregados desde las move lines
+                    moves = so_line.move_ids.filtered(
+                        lambda m: m.state == "done" and sum(m.move_line_ids.mapped("qty_done")) > 0
+                    )
+
+                    if not moves:
+                        continue
+
+                    qty = sum(moves.move_line_ids.mapped("qty_done"))
+
+                    remitos = ", ".join(
+                        moves.mapped("picking_id.vouchers")
+                    ) if moves.mapped("picking_id.vouchers") else False
+
+                    vals = {
+                        "product_id": so_line.product_id.id,
+                        "quantity": qty,
+                        "price_unit": so_line.price_unit,
+                        "name": so_line.name,
+                        "tax_ids": [(6, 0, so_line.tax_id.ids)],
+                        "sale_line_ids": [(6, 0, [so_line.id])],
+                        "remito": remitos,
+                    }
+
+                    invoice_lines.append((0, 0, vals))
+
+                inv.write({"invoice_line_ids": invoice_lines})
+
+                delivered_pickings = self.sale_order_ids.picking_ids.filtered(
+                    lambda p: p.state in ['done', 'assigned', 'confirmed']
+                )
+
+                if delivered_pickings:
+                    inv.write({
+                        "picking_ids": [(6, 0, delivered_pickings.ids)]
+                    })
+
+
         return self.sale_order_ids.action_view_invoice(invoices=invoices)
