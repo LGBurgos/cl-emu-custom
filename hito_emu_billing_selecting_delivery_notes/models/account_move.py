@@ -13,17 +13,27 @@ class AccountMove(models.Model):
             if move.state != 'posted':
                 continue
 
-            # 1. Buscar pickings por remito explícito en líneas
-            picking_names = move.invoice_line_ids.mapped('remito')
-            pickings = self.env['stock.picking'].browse([])
+            if move.move_type == 'out_refund':
+                picking_names = move.invoice_line_ids.mapped('remito')
+                pickings = self.env['stock.picking'].browse([])
 
-            if picking_names:
-                pickings |= self.env['stock.picking'].search([
-                    ('vouchers', 'in', picking_names)
-                ])
+                if picking_names:
+                    pickings |= self.env['stock.picking'].search([
+                        ('vouchers', 'in', picking_names)
+                    ])
 
-            # Actualizar cada picking encontrado
-            for picking in pickings:
-                picking.facturado = 'facturado'
+                for picking in pickings:
+                    picking.facturado = 'no_facturado'
+            else:
+                picking_names = move.invoice_line_ids.mapped('remito')
+                pickings = self.env['stock.picking'].browse([])
+
+                if picking_names:
+                    pickings |= self.env['stock.picking'].search([
+                        ('vouchers', 'in', picking_names)
+                    ])
+
+                for picking in pickings:
+                    picking.facturado = 'facturado'
 
         return res
