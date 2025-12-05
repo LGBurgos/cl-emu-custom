@@ -90,6 +90,18 @@ class SaleAdvancePaymentInv(models.TransientModel):
 
                 inv.write({"invoice_line_ids": invoice_lines})
 
+                #Recalcular impuestos en cada línea
+                for line in inv.invoice_line_ids:
+                    line._compute_tax_ids()
+
+                # Recalcular totales de la factura
+                inv._compute_tax_totals()
+
+
+                inv.write({
+                    "picking_ids": [(6, 0, self.select_pickings.ids)]
+                })
+
 
                 inv.write({
                     "picking_ids": [(6, 0, self.select_pickings.ids)]
@@ -134,6 +146,17 @@ class SaleAdvancePaymentInv(models.TransientModel):
                     invoice_lines.append((0, 0, vals))
 
                 inv.write({"invoice_line_ids": invoice_lines})
+
+                # Recalcular impuestos en cada línea
+                for line in inv.invoice_line_ids:
+                    line._compute_tax_ids()
+
+                # Recalcular totales de la factura
+                inv._compute_tax_totals()
+
+                inv.write({
+                    "picking_ids": [(6, 0, self.select_pickings.ids)]
+                })
 
                 delivered_pickings = self.sale_order_ids.picking_ids.filtered(
                     lambda p: p.state in ['done', 'assigned', 'confirmed']
