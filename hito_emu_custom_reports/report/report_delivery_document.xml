@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
         <template id="custom_header_delivery">
             <div class="mb-3">
@@ -70,6 +71,10 @@
 
 
         <template id="hito_report_delivery_document_inherit" inherit_id="l10n_ar_stock.report_delivery_document">
+
+             <xpath expr="//div[count(@*) = 1 and @t-else]" position="replace">
+             </xpath>
+
              <xpath expr="//div[@id='informations']/div[2]" position="replace">
                  <div class="col-6">
                     <t>
@@ -112,7 +117,7 @@
              </xpath>
 
             <xpath expr="//table[@name='stock_move_line_table']" position="replace">
-                <table class="table table-borderless mt48" t-elif="o.move_line_ids and o.state=='done'" name="stock_move_line_table">
+                <table class="table table-borderless mt48" t-if="o.move_line_ids and o.state=='done'" name="stock_move_line_table">
                     <thead style="border-top: 2px solid black; border-bottom: 2px solid black;">
                         <!-- <th class="p-1">
                             <span>CODIGO</span>
