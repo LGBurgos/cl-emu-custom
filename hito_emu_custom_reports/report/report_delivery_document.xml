@@ -1,6 +1,6 @@
 <odoo>
         <template id="custom_header_delivery">
-            <div class="mb-3">
+            <div class="mb-3" style="font-size: 18px;">
                 <div class="row" style="height:15px;">
                 </div>
                 <div class="row mb-2">
