@@ -1,7 +1,7 @@
 <odoo>
     <!-- HEADER -->
     <template id="purchase_custom_header">
-        <div class="row">
+        <div class="row" style="font-size: 18px;">
             <div class="col-8">
                 <div class="row" style="font-family:sans-serif">
                     <div class="col-2">
@@ -181,4 +181,3 @@
     </template>
 
 </odoo>
-
