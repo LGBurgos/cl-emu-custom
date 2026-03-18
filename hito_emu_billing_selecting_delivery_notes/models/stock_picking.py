@@ -1,6 +1,7 @@
 from odoo import models, fields, api
 from odoo.tools import float_compare
 
+
 class StockPicking(models.Model):
     _inherit = "stock.picking"
 
@@ -10,26 +11,57 @@ class StockPicking(models.Model):
     @api.depends(
         'move_ids.invoice_line_ids',
         'move_ids.invoice_line_ids.move_id.state',
+        'vouchers',
     )
     def compute_state(self):
         for rec in self:
+            # Camino 1: relación directa stock.move → account.move.line
             invoices = rec.move_ids.invoice_line_ids.mapped('move_id')
             invoices = invoices.filtered(lambda inv: inv.state == 'posted')
 
+            # Camino 2: si no hay relación directa, buscar por campo vouchers/remito
+            if not invoices and rec.vouchers:
+                invoices = self.env['account.move'].search([
+                    ('move_type', '=', 'out_invoice'),
+                    ('state', '=', 'posted'),
+                    ('invoice_line_ids.remito', '=', rec.vouchers),
+                ])
+
             rec.facturado = 'facturado' if invoices else 'no_facturado'
-
-
 
     @api.model
     def cron_marcar_remitos_facturados(self):
         """
-        Marca como facturados los remitos que:
-        - Son entregas
-        - Tienen vouchers
-        - Están no_facturados
-        - Tienen factura posteada con línea coincidente
+        Realiza dos correcciones sobre el campo facturado:
+
+        1. CORREGIR FALSOS FACTURADOS: Remitos marcados como 'facturado'
+           pero sin ninguna factura posteada asociada por vouchers.
+           → Se revierten a 'no_facturado'.
+
+        2. MARCAR FACTURADOS FALTANTES: Remitos 'no_facturado' que tienen
+           una factura posteada con línea coincidente en producto y cantidad.
+           → Se marcan como 'facturado'.
         """
 
+        AccountMove = self.env['account.move']
+
+        # --- PASO 1: Corregir falsos facturados ---
+        pickings_facturados = self.search([
+            ('picking_type_code', '=', 'outgoing'),
+            ('vouchers', '!=', False),
+            ('facturado', '=', 'facturado'),
+        ])
+
+        for picking in pickings_facturados:
+            invoices = AccountMove.search([
+                ('move_type', '=', 'out_invoice'),
+                ('state', '=', 'posted'),
+                ('invoice_line_ids.remito', '=', picking.vouchers),
+            ])
+            if not invoices:
+                picking.facturado = 'no_facturado'
+
+        # --- PASO 2: Marcar facturados faltantes ---
         pickings = self.search([
             ('picking_type_code', '=', 'outgoing'),
             ('vouchers', '!=', False),
@@ -45,7 +77,7 @@ class StockPicking(models.Model):
         for picking in pickings:
             # Buscar facturas posteadas que tengan alguna línea con este remito
             invoices = AccountMove.search([
-                ('move_type', 'in', ('out_invoice', 'out_refund')),
+                ('move_type', '=', 'out_invoice'),
                 ('state', '=', 'posted'),
                 ('invoice_line_ids.remito', '=', picking.vouchers),
             ])
@@ -57,7 +89,7 @@ class StockPicking(models.Model):
 
             for move in invoices:
                 for line in move.invoice_line_ids.filtered(
-                    lambda l: l.remito == picking.vouchers and l.product_id
+                        lambda l: l.remito == picking.vouchers and l.product_id
                 ):
                     # Buscar movimiento del remito con mismo producto
                     move_line = picking.move_ids_without_package.filtered(
@@ -69,9 +101,9 @@ class StockPicking(models.Model):
 
                     # Comparar cantidades (con precisión UoM)
                     if float_compare(
-                        line.quantity,
-                        sum(move_line.mapped('quantity')),
-                        precision_rounding=line.product_uom_id.rounding,
+                            line.quantity,
+                            sum(move_line.mapped('quantity')),
+                            precision_rounding=line.product_uom_id.rounding,
                     ) == 0:
                         remito_facturado = True
                         break
