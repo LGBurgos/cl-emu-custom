@@ -5,9 +5,25 @@
         <field name="inherit_id" ref="stock.view_picking_form"/>
         <field name="arch" type="xml">
 
+            <xpath expr="//div[@name='button_box']" position="inside">
+
+                <!-- Botón inteligente: facturas vinculadas por campo remito -->
+                <button
+                        type="object"
+                        name="action_view_invoices_by_remito"
+                        class="oe_stat_button"
+                        icon="fa-file-text-o"
+                        invisible="invoice_by_remito_count == 0">
+                    <field name="invoice_by_remito_count" widget="statinfo" string="Fact. por Remito"/>
+                </button>
+
+                <field name="invoice_by_remito_ids" invisible="1"/>
+
+            </xpath>
+
             <xpath expr="//div[@name='button_box']" position="after">
 
-                 <widget name="web_ribbon" title="Facturado" bg_color="bg-success" invisible="facturado != 'facturado'"/>
+                <widget name="web_ribbon" title="Facturado" bg_color="bg-success" invisible="facturado != 'facturado'"/>
 
                 <field name="facturado" invisible="1"/>
 
@@ -30,6 +46,6 @@
             </xpath>
 
         </field>
-</record>
+    </record>
 
 </odoo>

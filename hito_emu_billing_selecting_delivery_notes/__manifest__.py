@@ -1,10 +1,12 @@
 {
     "name": "hito emu billing selecting delivery notes",
     "version": "18.0",
-    "depends": ['sale_management','accountant','stock_picking_invoice_link'],
+    "depends": ['sale_management','accountant','stock_picking_invoice_link', 'stock_voucher'],
     "category": "",
     "summary": "billing selecting delivery notes",
     "data": [
+        'data/ir_cron.xml',
+
         'views/stock_picking.xml',
         'views/view_sale_advance_payment_inv.xml',
         'views/account_move.xml',
