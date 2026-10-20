@@ -47,7 +47,7 @@
                         <!-- (7) Numero punto venta - (8) numero de documento -->
                         <!--                        <span t-att-style="'color: %s;' % o.company_id.secondary_color">Nro: </span><span t-out="report_number"/>-->
                         <t t-if="o.state == 'posted'">
-                            <span style="font-weight:bold; font-size: 16px;">Punto de venta: </span><span t-esc="o.sequence_prefix[4:10]"/>   <span style="font-weight:bold; font-size: 16px;">- Comp. N°: </span><span style="font-size: 16px;" t-esc="o.l10n_latam_document_number.split('-')[1]"/>
+                            <span style="font-weight:bold; font-size: 16px;">Punto de venta: </span><t t-esc="o.name.split()[-1].split('-')[0]"/>   <span style="font-weight:bold; font-size: 16px;">- Comp. N°: </span><span style="font-size: 16px;" t-esc="o.l10n_latam_document_number.split('-')[1]"/>
                             <br/>
                         </t>
                         <t t-else="">
